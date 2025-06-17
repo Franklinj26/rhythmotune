@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-contents">
+            <h1 id="title">Registrate</h1>
+
+            <form action="altausuario.php" method="post"> 
+                <div class="input-group">
+
+                    <div class="input-field" id="nameInput">
+                        <input type="text" name="name" placeholder="Usuario">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="mail" placeholder="correo@gmail.com">
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="pass" placeholder="Contraseña">
+                    </div>
+                    <div class="tipo" id="tipoCuenta">
+                        <label><input type="radio" name="tipo_cuenta" value="1" checked> Free</label>
+                        <label><input type="radio" name="tipo_cuenta" value="2"> Premium</label>
+                    </div>                    
+        
+                </div>
+                <div class="btn-field">
+                    <button id="signUp" type="submit" name="registro">Registrar</button>
+                    <button id="signIn" type="submit" class="disable" name="login">Iniciar Sesión</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
