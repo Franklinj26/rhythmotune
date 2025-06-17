@@ -34,7 +34,7 @@ CREATE TABLE `albums` (
   `año` year(4) NOT NULL,
   `id_artista` int(11) NOT NULL,
   `portada_album` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `albums`
@@ -100,7 +100,7 @@ CREATE TABLE `artistas` (
   `nacionalidad` varchar(50) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
   `foto_artista` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `artistas`
@@ -138,7 +138,7 @@ CREATE TABLE `canciones` (
   `duracion` time NOT NULL,
   `id_album` int(11) NOT NULL,
   `reproducciones` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `canciones`
@@ -330,7 +330,7 @@ INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio
 CREATE TABLE `canciones_playlists` (
   `id_playlist` int(11) NOT NULL,
   `id_cancion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `canciones_playlists`
@@ -386,7 +386,7 @@ CREATE TABLE `cuenta` (
   `id_cuenta` int(11) NOT NULL,
   `tipo_cuenta` varchar(50) NOT NULL,
   `precio` decimal(5,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `cuenta`
@@ -407,7 +407,7 @@ CREATE TABLE `playlists` (
   `nom_playlist` varchar(50) NOT NULL,
   `id_usu` int(11) NOT NULL,
   `f_creacion` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `playlists`
@@ -429,7 +429,7 @@ CREATE TABLE `reproducciones` (
   `id_usu` int(11) NOT NULL,
   `id_cancion` int(11) NOT NULL,
   `fecha` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `reproducciones`
@@ -451,7 +451,7 @@ CREATE TABLE `usuarios` (
   `contraseña` varchar(50) NOT NULL,
   `f_registro` datetime NOT NULL DEFAULT current_timestamp(),
   `id_cuenta` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
