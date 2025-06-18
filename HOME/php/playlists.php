@@ -133,9 +133,9 @@ $playlists = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
                 </div>
             <?php endif; ?>
         </section>
-    </main>
 
-        <footer class="main-footer">
+        
+ <footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -166,6 +166,9 @@ $playlists = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
                 <span>© 2025 RhythmoTune - Salesianas</span>
             </div>
         </footer>
+    </main>
+
+       
 
     <script src="../js/script.js"></script>
 </body>
