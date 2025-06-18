@@ -159,9 +159,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
             </div>
         </section>
-    </main>
 
-        <footer class="main-footer">
+     <footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -192,6 +191,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span>© 2025 RhythmoTune - Salesianas</span>
             </div>
         </footer>
+    </main>
+
+       
 
     <script src="../js/script.js"></script>
 </body>

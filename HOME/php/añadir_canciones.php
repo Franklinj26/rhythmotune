@@ -117,9 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="ver_playlist.php?id=<?php echo $playlist_id; ?>" class="btn-secondary">Cancelar</a>
             </div>
         </form>
-    </main>
-
-        <footer class="main-footer">
+    
+    <footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -150,5 +149,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span>© 2025 RhythmoTune - Salesianas</span>
             </div>
         </footer>
+    </main>
+
+        
 </body>
 </html>

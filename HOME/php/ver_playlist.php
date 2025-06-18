@@ -172,9 +172,7 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 </div>
             </div>
         </div>
-    </main>
-
-        <footer class="main-footer">
+    <footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -205,6 +203,9 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 <span>© 2025 RhythmoTune - Salesianas</span>
             </div>
         </footer>
+    </main>
+
+        
 
     <script src="../js/script.js"></script>
     <script>
