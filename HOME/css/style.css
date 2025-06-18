@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
 :root {
   --primary-color: #1DB954;
   --dark-bg: #0e0e15;
@@ -7,13 +9,13 @@
   --text-secondary: #b3b3b3;
   --accent-color: #ff4d4d;
   --category-bg: #2a2a3a;
-  --font-main: 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'poppins';
 }
 
 body {
@@ -821,15 +823,6 @@ hr {
 
 
 /*Modificaciones*/
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'poppins';
-}
 
 .container {
     width: 100%;
