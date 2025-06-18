@@ -21,7 +21,7 @@ session_start();
 require 'conexion.php';
 require 'limpiar.php';
 
-require_once 'php/contacto.php';
+require_once 'HOME/php/contacto.php';
 
 function hashData($data) {
     return password_hash($data, PASSWORD_BCRYPT);
