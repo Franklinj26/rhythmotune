@@ -135,36 +135,37 @@ $playlists = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-grid">
-            <div class="footer-logo">
-                <a href="./bien.php">
-                    <img src="../iconos/RHYTMO6.jpg" alt="RhythmoTune Logo">
-                </a>
-            </div>
+        <footer class="main-footer">
+            <hr>
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <a href="../php/bien.php">
+                        <img src="../iconos/RHYTMO6.jpg" alt="RhythmoTune Logo">
+                    </a>
+                </div>
 
-            <div class="footer-links">
-                <ul>
-                    <li><a href="../html/acerca_de.html" target="_blank">Acerca de</a></li>
-                    <li><a href="../html/politica_de_privacidad.html">Política de privacidad</a></li>
-                    <li><a href="../html/aviso_legal.html">Aviso legal</a></li>
-                    <li><a href="../html/contacto.html">Contacto</a></li>
-                    <li><a href="#">Cookies</a></li>
-                </ul>
-            </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="../html/acerca_de.html" target="_blank">Acerca de</a></li>
+                        <li><a href="../html/politica_de_privacidad.html">Política de privacidad</a></li>
+                        <li><a href="../html/aviso_legal.html">Aviso legal</a></li>
+                        <li><a href="../html/contacto.html">Contacto</a></li>
+                        <!--<li><a href="#">Cookies</a></li>-->
+                    </ul>
+                </div>
 
-            <div class="social-links">
-                <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png" alt="Instagram"></a>
-                <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png" alt="Twitter/X"></a>
-                <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png" alt="Facebook"></a>
-                <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg" alt="LinkedIn"></a>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png" alt="Instagram"></a>
+                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png" alt="Twitter/X"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg" alt="LinkedIn"></a>
+                </div>
             </div>
-        </div>
-        
-        <div class="copyright">
-            <span>© 2025 RhythmoTune - Salesianas</span>
-        </div>
-    </footer>
+            
+            <div class="copyright">
+                <span>© 2025 RhythmoTune - Salesianas</span>
+            </div>
+        </footer>
 
     <script src="../js/script.js"></script>
 </body>

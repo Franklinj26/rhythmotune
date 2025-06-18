@@ -182,10 +182,10 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
         </div>
 
         <footer class="main-footer">
-            <!-- Mantén el mismo footer que en tu página principal -->
+            <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <a href="./bien.php">
+                    <a href="../php/bien.php">
                         <img src="../iconos/RHYTMO6.jpg" alt="RhythmoTune Logo">
                     </a>
                 </div>
@@ -196,7 +196,7 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                         <li><a href="../html/politica_de_privacidad.html">Política de privacidad</a></li>
                         <li><a href="../html/aviso_legal.html">Aviso legal</a></li>
                         <li><a href="../html/contacto.html">Contacto</a></li>
-                        <li><a href="#">Cookies</a></li>
+                        <!--<li><a href="#">Cookies</a></li>-->
                     </ul>
                 </div>
 

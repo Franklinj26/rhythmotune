@@ -126,9 +126,10 @@ $resultado = mysqli_query($conn, $sql);
         </section>
 
         <footer class="main-footer">
+            <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <a href="./bien.php">
+                    <a href="../php/bien.php">
                         <img src="../iconos/RHYTMO6.jpg" alt="RhythmoTune Logo">
                     </a>
                 </div>
@@ -139,7 +140,7 @@ $resultado = mysqli_query($conn, $sql);
                         <li><a href="../html/politica_de_privacidad.html">Política de privacidad</a></li>
                         <li><a href="../html/aviso_legal.html">Aviso legal</a></li>
                         <li><a href="../html/contacto.html">Contacto</a></li>
-                        <li><a href="#">Cookies</a></li>
+                        <!--<li><a href="#">Cookies</a></li>-->
                     </ul>
                 </div>
 
