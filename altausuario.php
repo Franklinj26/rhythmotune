@@ -1,92 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Registro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/styles.css" />
+  <title>Registro</title>
 </head>
 
 <body>
     <div class="container">
         <div class="form-contents">
             <h1 id="title">Bienvenido</h1>
-            <?php
-              session_start();
-              require 'limpiar.php';
-            
-              /* Comprobamos que llegan todos los datos del formulario */
+<?php
+session_start();
+require 'conexion.php';
+require 'limpiar.php';
 
-              if (!isset($_POST["name"]) || !isset($_POST["mail"]) || !isset($_POST["pass"]))
-                die("Acceso denegado");
+function hashData($data) {
+    return password_hash($data, PASSWORD_BCRYPT);
+}
 
-              /* Limpiamos los datos */
+// -----------------------------
+//        REGISTRO
+// -----------------------------
+if (isset($_POST['registro'])) {
+    if (!isset($_POST["name"], $_POST["mail"], $_POST["pass"], $_POST["tipo_cuenta"])) {
+        die("<p style='color:#FFF'>❌ Datos incompletos. <a href='altausuario.html'>Volver</a></p>");
+    }
 
-              $name = test_input($_POST["name"]);
-              $mail = test_input($_POST["mail"]);
-              $pass = test_input($_POST["pass"]);
-              $tipo = test_input($_POST["tipo_cuenta"]);
-              $fecha = date("Y-m-d H:i:s");
+    $name = test_input($_POST["name"]);
+    $mail = test_input($_POST["mail"]);
+    $pass = test_input($_POST["pass"]);
+    $tipo = test_input($_POST["tipo_cuenta"]);
+    $fecha = date("Y-m-d H:i:s");
 
-              /* Incluimos las instrucciones de conexión a la bbdd */
+    $stmt = mysqli_prepare($conn, "SELECT id_usu FROM usuarios WHERE correo = ?");
+    mysqli_stmt_bind_param($stmt, "s", $mail);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
 
-              require 'conexion.php';
-            // -----------------------------
-            //        REGISTRO
-            // -----------------------------
-            if (isset($_POST['registro'])) {
-            /* Comprobamos que no están vacíos después de limpiarlos */
-              if ($name=="" || $mail=="" || $pass=="" || $fecha==""|| $tipo=="")
-              die ("No puede haber campos vacíos");
-                // Verificar si ya existe el correo
-                $sql = "SELECT * FROM usuarios WHERE correo='$mail'";
-                $resultado = mysqli_query($conn, $sql);
+    if (mysqli_stmt_num_rows($stmt) > 0) {
+        echo "<p style='color:#FFF'>❌ El correo ya está registrado. <a href='altausuario.html'>Volver</a></p>";
+        exit();
+    }
+    mysqli_stmt_close($stmt);
 
-                if (mysqli_num_rows($resultado) > 0) {
-                    echo "<p style='color:#FFFFFF'> El correo ya está registrado. Prueba a <a href='altausuario.html' style='text-decoration: none; color: #FFFFFF;'>iniciar sesión.</a></p>";
-                } else {
-                    // Insertar nuevo usuario
-                    $sql = "INSERT INTO usuarios (id_usu, nom_usu, correo, contraseña, f_registro, id_cuenta)
-                            VALUES (0, '$name', '$mail', '$pass', '$fecha', '$tipo')";
+    $pass_hashed = password_hash($pass, PASSWORD_BCRYPT);
 
-                    if (mysqli_query($conn, $sql)) {
-                        echo "<p style='color:#FFFFFF'>✅ Registro exitoso. Ya puedes <a href='altausuario.html' style='text-decoration: none; color: #FFFFFF;'> iniciar sesión.</a></p>";
-                    } else {
-                        echo "<p style'=color:#FFFFFF'>❌ Error al registrar: " . mysqli_error($conn)."</p>";
-                    }
-                }
-            }
+    $stmt = mysqli_prepare($conn, "INSERT INTO usuarios (nom_usu, correo, contraseña, f_registro, id_cuenta) VALUES (?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssssi", $name, $mail, $pass_hashed, $fecha, $tipo);
 
-            // -----------------------------
-            //        INICIO DE SESIÓN
-            // -----------------------------
-            if (isset($_POST['login'])) {
-                $sql = "SELECT * FROM usuarios WHERE correo='$mail' AND contraseña='$pass'";
-                $resultado = mysqli_query($conn, $sql);
+    if (mysqli_stmt_execute($stmt)) {
+        $id_usuario = mysqli_insert_id($conn);
+        if ($tipo == "2") {
+            $_SESSION['nuevo_usuario'] = $id_usuario;
+            header("Location: datos_tarjeta.php");
+            exit();
+        } else {
+            echo "<p style='color:#FFF'>✅ Registro exitoso. <a href='altausuario.html'>Iniciar sesión</a></p>";
+        }
+    } else {
+        echo "<p style='color:#FFF'>❌ Error al registrar usuario: " . htmlspecialchars(mysqli_error($conn)) . "</p>";
+    }
 
-                if (mysqli_num_rows($resultado) > 0) {
-                    $usuario = mysqli_fetch_assoc($resultado);
+    mysqli_stmt_close($stmt);
+}
 
-                    $_SESSION['usuario_id'] = $usuario['id_usu'];
-                    $_SESSION['usuario_nombre'] = $usuario['nom_usu'];
+// -----------------------------
+//        INICIO DE SESIÓN
+// -----------------------------
+if (isset($_POST['login'])) {
+    if (!isset($_POST["mail"]) || !isset($_POST["pass"])) {
+        die("<p style='color:#FFF'>❌ Datos incompletos. <a href='altausuario.html'>Volver</a></p>");
+    }
 
-                    // Redirigir a la página de inicio personalizada
-                    header("Location: HOME/php/bien.php");
-                    exit();
-                } else {
-                    echo "<p style='color:#FFFFFF'>❌ Correo o contraseña incorrectos.";
-                }
-            }
+    $mail = test_input($_POST["mail"]);
+    $pass = test_input($_POST["pass"]);
 
-            mysqli_close($conn);
-            ?>
+    $stmt = mysqli_prepare($conn, "SELECT id_usu, nom_usu, contraseña FROM usuarios WHERE correo = ?");
+    mysqli_stmt_bind_param($stmt, "s", $mail);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
 
+    if (mysqli_num_rows($resultado) > 0) {
+        $usuario = mysqli_fetch_assoc($resultado);
+        if (password_verify($pass, $usuario['contraseña'])) {
+            $_SESSION['usuario_id'] = $usuario['id_usu'];
+            $_SESSION['usuario_nombre'] = $usuario['nom_usu'];
+            header("Location: HOME/php/bien.php");
+            exit();
+        } else {
+            echo "<p style='color:#FFF'>❌ Contraseña incorrecta. <a href='altausuario.html'>Volver</a></p>";
+        }
+    } else {
+        echo "<p style='color:#FFF'>❌ Correo no registrado. <a href='altausuario.html'>Volver</a></p>";
+    }
 
-        </div>
+    mysqli_stmt_close($stmt);
+}
+
+mysqli_close($conn);
+?>
+
+</div>
     </div>
-
     <script src="js/script.js"></script>
 </body>
-
 </html>

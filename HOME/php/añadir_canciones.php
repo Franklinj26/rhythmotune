@@ -22,14 +22,20 @@ if (mysqli_num_rows($result) === 0) {
 }
 
 // Obtener canciones disponibles
-$sql_canciones = "SELECT c.id_cancion, c.nom_cancion, a.nom_album, ar.nom_artista 
-                 FROM canciones c
-                 JOIN albums a ON c.id_album = a.id_album
-                 JOIN artistas ar ON a.id_artista = ar.id_artista
-                 WHERE c.id_cancion NOT IN (
-                     SELECT id_cancion FROM canciones_playlists 
-                     WHERE id_playlist = ?
-                 )";
+$sql_canciones = "SELECT 
+                    c.id_cancion, 
+                    c.nom_cancion, 
+                    a.nom_album, 
+                    a.portada_album, 
+                    a.nombre_directorio, 
+                    ar.nom_artista 
+                FROM canciones c
+                JOIN albums a ON c.id_album = a.id_album
+                JOIN artistas ar ON a.id_artista = ar.id_artista
+                WHERE c.id_cancion NOT IN (
+                    SELECT id_cancion FROM canciones_playlists 
+                    WHERE id_playlist = ?
+                )";
 $stmt = mysqli_prepare($conn, $sql_canciones);
 mysqli_stmt_bind_param($stmt, "i", $playlist_id);
 mysqli_stmt_execute($stmt);
@@ -58,21 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Añadir canciones</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        .song-list {
-            margin: 20px 0;
-        }
-        .song-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid var(--category-bg);
-        }
-        .song-info {
-            margin-left: 15px;
-            flex: 1;
-        }
-    </style>
 </head>
 <body>
 <div class="menu">
@@ -96,25 +87,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Añadir canciones a la playlist</h2>
         
         <form method="POST">
-            <div class="song-list">
+            <div class="song-list-add">
                 <?php if (!empty($canciones)): ?>
                     <?php foreach ($canciones as $cancion): ?>
-                        <div class="song-item">
-                            <input type="checkbox" name="canciones[]" value="<?php echo $cancion['id_cancion']; ?>">
-                            <div class="song-info">
-                                <strong><?php echo htmlspecialchars($cancion['nom_cancion']); ?></strong>
-                                <div><?php echo htmlspecialchars($cancion['nom_artista']); ?> • <?php echo htmlspecialchars($cancion['nom_album']); ?></div>
+                        <button type="submit" name="canciones[]" value="<?php echo $cancion['id_cancion']; ?>" class="song-add-item">
+                            <img src="../portada/albums/<?php echo htmlspecialchars($cancion['portada_album'] ?: 'album-placeholder.png'); ?>" alt="Portada">
+                            <div class="song-info-add">
+                                <?php echo htmlspecialchars($cancion['nom_cancion']); ?>
+                                <span><?php echo htmlspecialchars($cancion['nom_artista']); ?> • <?php echo htmlspecialchars($cancion['nom_album']); ?></span>
                             </div>
-                        </div>
+                        </button>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>No hay canciones disponibles para añadir</p>
+                    <p class="no-songs-message">No hay canciones disponibles para añadir</p>
                 <?php endif; ?>
             </div>
-            
+
             <div class="form-actions">
-                <button type="submit" class="btn-play">Añadir seleccionadas</button>
-                <a href="ver_playlist.php?id=<?php echo $playlist_id; ?>" class="btn-secondary">Cancelar</a>
+                <a href="ver_playlist.php?id=<?php echo $playlist_id; ?>" class="btn-secondary">Volver</a>
             </div>
         </form>
     
@@ -150,7 +140,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </footer>
     </main>
-
-        
 </body>
 </html>

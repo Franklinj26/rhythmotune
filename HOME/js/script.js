@@ -125,3 +125,4 @@ function showError(message) {
     console.error(message);
     // Puedes implementar un sistema de notificaciones aquí
 }
+
