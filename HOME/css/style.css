@@ -491,7 +491,7 @@
 
   /* Footer */
 .main-footer {
-    margin-top: 5rem;
+    margin-top:auto;
     padding: 3rem 0 2rem;
     background-color: #0e0e15;
     color: white;
@@ -588,6 +588,7 @@
     
     #main-content {
       margin-left: 240px;
+      flex: 1;
     }
     
     .music-player {
@@ -609,6 +610,7 @@
     #main-content {
       margin-left: 0;
       padding: 1.5rem;
+      flex: 1;
     }
     
     .music-player {
