@@ -157,21 +157,119 @@
             /*border-top: 1px solid rgba(255, 255, 255, 0.1);*/
         }
 
-@media (min-width: 768px) {
+  @media (max-width: 1024px) {
+    .menu {
+      width: 240px;
+    }
+    
+    #main-content {
+      margin-left: 240px;
+      flex: 1;
+    }
+    
+    .music-player {
+      left: 240px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+    
+    .menu {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    
+    #main-content {
+      margin-left: 0;
+      padding: 1.5rem;
+      flex: 1;
+    }
+    
+    .music-player {
+      left: 0;
+    }
+    
+    .music-grid,
+    .artists-grid,
+    .albums-grid {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    /*.footer-grid {
+      grid-template-columns: 1fr;
+    }*/
+    
+    .social-links {
+      justify-content: flex-start;
+    }
+    /*.footer-logo {
+    display: flex;
+    justify-content: center;
+    }*/
+    .footer-logo {
+        justify-content: center; /* Centra el logo en móviles */
+        width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 1rem; /* Espacio debajo del logo */
+    }
+    
+    /* Si usas grid o flex en el contenedor padre, ajusta también: */
     .footer-grid {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+        text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .main-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .search-bar {
+      width: 100%;
+    }
+    
+    .music-grid,
+    .artists-grid,
+    .albums-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .player-content {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 10px 0;
+    }
+    
+    .song-info,
+    .player-controls,
+    .volume-control {
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 10px;
     }
 
-    .footer-links ul {
-        text-align: left;
+    .footer-logo {
+        justify-content: center; /* Centra el logo en móviles */
+        width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 1rem; /* Espacio debajo del logo */
+    }
+    
+    /* Si usas grid o flex en el contenedor padre, ajusta también: */
+    .footer-grid {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+        text-align: center;
     }
 
-    .footer-links li {
-        margin-bottom: 0.4rem;
-    }
-}
+    .footer-logo {
+    display: flex;
+    justify-content: center;
+    }}
     </style>
 </head>
 <body>
