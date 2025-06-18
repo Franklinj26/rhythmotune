@@ -488,31 +488,55 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
   
-  .footer-grid {
+  /*.footer-grid {
     display: flex;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    width: 100%;
+  }*/
+  .footer-grid{
+     padding: 0;
+     width: 100%;
+     height: 250px;
+     display: flex;
   }
-  
-.footer-logo>a{
-  text-align: center;
-}
+  .footer-logo > div {
+     margin: auto;
+     padding: 0;
+     height: 100%;
+     width: 33%;
+     overflow: auto;
+  }
+
+  .footer-logo>a{
+    text-align: center;
+    background-size: cover;
+  }
 
   .footer-logo img {
-    width: 60%;
-    max-width: 200px;
+    /*width: 60%;
+    max-width: 200px;*/
+    width: 49%;
+    background-size: cover;
   }
   
   .footer-links ul {
-    list-style: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
   }
   
-  .footer-links li {
+  /*.footer-links li {
     margin-bottom: 0.8rem;
-  }
+  }*/
   
   .footer-links a {
     color: var(--text-color);
@@ -526,23 +550,33 @@
   
   .social-links {
     display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
+    /*gap: 1rem;
+    justify-content: flex-end;*/
+    justify-content: space-between;
+    align-items: center;
   }
   
   .social-links a {
-    display: block;
+    /*display: block;
     width: 40px;
-    height: 40px;
+    height: 40px;*/
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .social-links img {
-    width: 100%;
+    /*width: 100%;
     height: 100%;
     object-fit: contain;
     filter: brightness(0) invert(1);
     opacity: 0.7;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s;*/
+    width: 50%;
+    height: 50%;
+    margin-top: 2%;
+    border-radius: 50%;
   }
   
   .social-links img:hover {
@@ -550,7 +584,7 @@
   }
   
   .copyright {
-    text-align: center;
+    text-align: right;
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
   }
