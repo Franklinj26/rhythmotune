@@ -187,6 +187,7 @@ $albumes = mysqli_fetch_all($result_albumes, MYSQLI_ASSOC);
         </div>
     </div>
 </div>
+<hr>
         <footer class="main-footer">
             <div class="footer-grid">
                 <div class="footer-logo">
