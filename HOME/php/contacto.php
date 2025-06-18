@@ -1,14 +1,14 @@
 
 <?php
 session_start();
+// Incluir la clase PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 require '../../phpmailer/src/Exception.php';
 require '../../phpmailer/src/PHPMailer.php';
 require '../../phpmailer/src/SMTP.php';
 
-// Incluir la clase PHPMailer
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 final class Contacto {
     public function EnviarCorreo($correo_destinatario, $asunto_correo, $cuerpo_correo){
