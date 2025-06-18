@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 17-06-2025 a las 18:41:22
+-- Tiempo de generación: 18-06-2025 a las 18:42:14
 -- Versión del servidor: 11.4.3-MariaDB-1
 -- Versión de PHP: 8.2.27
 
@@ -70,7 +70,7 @@ INSERT INTO `albums` (`id_album`, `nom_album`, `nombre_directorio`, `año`, `id_
 (1160, 'DONDE QUIERO ESTAR', 'donde_quiero_estar', '2023', 1022, 'dqe.jpeg'),
 (1161, 'BUENAS NOCHES', 'buenas_noches', '2024', 1022, 'bn.jpeg'),
 (1162, 'SOUR', 'sour', '2021', 1023, 'sour.jpeg'),
-(1163, 'GUTS', 'guts', '2023', 1023, 'guts.mp3'),
+(1163, 'GUTS', 'guts', '2023', 1023, 'guts.jpeg'),
 (1164, 'ETERNAL SUNSHINE', 'eternal_sunshine', '2024', 1024, 'eternal.jpeg'),
 (1165, 'POSITIONS', 'positions', '2020', 1024, 'positions.jpeg'),
 (1166, 'SWEETENER', 'sweetener', '2018', 1024, 'sweetener.jpeg'),
@@ -82,11 +82,11 @@ INSERT INTO `albums` (`id_album`, `nom_album`, `nombre_directorio`, `año`, `id_
 (1172, '30', '30', '2021', 1027, '30.jpeg'),
 (1173, '25', '25', '2015', 1027, '25.jpeg'),
 (1174, 'ANTI', 'anti', '2016', 1028, 'anti.jpeg'),
-(1175, 'LOUD', 'loud', '2010', 1028, 'loud.mp3'),
-(1176, 'TALK THAT TALK', 'talk_that_talk', '2011', 1028, 'talk.mp3'),
+(1175, 'LOUD', 'loud', '2010', 1028, 'loud.jpeg'),
+(1176, 'TALK THAT TALK', 'talk_that_talk', '2011', 1028, 'talk.jpeg'),
 (1177, 'HIT ME HARD AND SOFT', 'hit_me_hard_and_soft', '2024', 1029, 'hmhas.jpeg'),
 (1178, 'HAPPIER THAN EVER', 'happier_than_ever', '2021', 1029, 'hte.jpeg'),
-(1179, 'WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?', 'when_we_all_asleep_where_do_we_go', '2019', 1029, 'when_we.jpeg');
+(1179, 'WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?', 'when_we_all_fall_asleep_where_do_we_go', '2019', 1029, 'when_we.jpeg');
 
 -- --------------------------------------------------------
 
@@ -121,8 +121,7 @@ INSERT INTO `artistas` (`id_artista`, `nom_artista`, `nacionalidad`, `descripcio
 (1026, 'Dua Lipa', 'Reino Unido', 'Dua Lipa.', 'dua.jpeg'),
 (1027, 'Adele', 'Reino Unido', 'Adele Laurie Blue Adkins.', 'adele.jpeg'),
 (1028, 'Rihanna', 'Barbados', 'Robyn Rihanna Fenty.', 'rihanna.jpeg'),
-(1029, 'Billie Eillish', 'EE.UU', 'Billie Eilish Pirate Baird O\'Connell.', 'billie.jpeg'),
-(1030, 'Michael Jackson', 'EE.UU', 'Michael Joseph Jackson.', 'jackson.jpeg');
+(1029, 'Billie Eillish', 'EE.UU', 'Billie Eilish Pirate Baird O\'Connell.', 'billie.jpeg');
 
 -- --------------------------------------------------------
 
@@ -145,13 +144,9 @@ CREATE TABLE `canciones` (
 --
 
 INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio`, `duracion`, `id_album`, `reproducciones`) VALUES
-(1010, 'Tuyo', 'Mora', '', '04:29:00', 1111, 0),
-(1011, '512', 'Mora', '', '03:10:00', 1111, 0),
-(1013, 'Primer Dia de Clases', 'Mora', '', '02:26:00', 1111, 0),
-(1017, 'Te Conoci Perriando', 'Mora', '', '03:10:00', 1111, 0),
 (1020, 'Badtrip :(', 'Mora', 'badtrip.mp3', '03:11:00', 1113, 1),
 (1022, 'Memorias', 'Mora', 'memorias.mp3', '02:48:00', 1113, 0),
-(1025, 'Playa Privada', 'Mora, Elena Rose', 'playa_privada.mp3', '02:37:00', 1113, 0),
+(1025, 'Playa Privada', 'Mora, Elena Rose', 'playa_privada.mp3', '02:37:00', 1113, 4),
 (1026, 'Lejos de Ti', 'Mora', 'lejos_de_ti.mp3', '02:08:00', 1113, 0),
 (1028, 'Ojos Colorau', 'Mora', 'ojos_colorau.mp3', '03:41:00', 1113, 0),
 (1030, 'Apa', 'Mora, Quevedo', 'apa.mp3', '03:19:00', 1115, 0),
@@ -162,16 +157,16 @@ INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio
 (1039, 'Pasajero', 'Mora', 'pasajero.mp3', '02:28:00', 1114, 0),
 (1040, 'Polvora', 'Mora, Yandel', 'polvora.mp3', '03:05:00', 1114, 1),
 (1041, 'Donde se Aprende a Querer', 'Mora', 'donde_se_aprende_a_querer.mp3', '02:23:00', 1114, 0),
-(1046, 'Fantasias', 'Mora', 'fantasias.mp3', '03:11:00', 1114, 4),
+(1046, 'Fantasias', 'Mora', 'fantasias.mp3', '03:11:00', 1114, 5),
 (1048, 'Laguna', 'Mora, Arcangel', 'laguna.mp3', '04:06:00', 1114, 1),
 (1049, 'Lokita', 'Mora', 'lokita.mp3', '02:34:00', 1114, 0),
 (1060, 'Chimbita', 'Feid', 'chimbita.mp3', '02:36:00', 1112, 0),
 (1062, 'Fumeteo', 'Feid', 'fumeteo.mp3', '02:14:00', 1112, 0),
-(1065, 'El Padrino', 'Feid', 'el_padrino.mp3', '02:48:00', 1112, 4),
+(1065, 'El Padrino', 'Feid', 'el_padrino.mp3', '02:48:00', 1112, 6),
 (1084, 'Vente Conmigo', 'Feid', 'vente_conmigo.mp3', '03:05:00', 1119, 0),
 (1087, 'Luces De Tecno', 'Feid', 'luces_de_tecno.mp3', '02:44:00', 1119, 1),
-(1088, 'Ey Chory', 'Feid', 'ey_chory.mp3', '02:38:00', 1119, 4),
-(1094, 'Porfa', 'Feid', 'porfa.mp3', '03:52:00', 1117, 2),
+(1088, 'Ey Chory', 'Feid', 'ey_chory.mp3', '02:38:00', 1119, 8),
+(1094, 'Porfa', 'Feid', 'porfa.mp3', '03:52:00', 1117, 3),
 (1095, 'Borraxxa', 'Feid', 'borraxxa.mp3', '03:43:00', 1117, 0),
 (1099, 'Lo Sabe Dios', 'Karol G', 'lo_sabe_dios.mp3', '03:05:00', 1143, 0),
 (1100, 'Ganas De Ti', 'Karol G', 'ganas_de_ti.mp3', '03:15:00', 1143, 0),
@@ -189,20 +184,20 @@ INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio
 (1112, 'Dile A Él', 'Rauw Alejandro', 'dile_a_el.mp3', '03:15:00', 1152, 0),
 (1113, 'Mood', 'Rauw Alejandro', 'mood.mp3', '02:05:00', 1152, 0),
 (1114, 'Pensándote', 'Rauw Alejandro', 'pensandote.mp3', '03:10:00', 1152, 1),
-(1115, 'Corazón Despeinado', 'Rauw Alejandro', 'corazon_despeinado.mp3', '02:30:00', 1150, 1),
-(1116, 'Dejau', 'Rauw Alejandro', 'dejau.mp3', '03:10:00', 1150, 0),
+(1115, 'Corazón Despeinado', 'Rauw Alejandro', 'corazon_despeinado.mp3', '02:30:00', 1150, 5),
+(1116, 'Dejau', 'Rauw Alejandro', 'dejau.mp3', '03:10:00', 1150, 4),
 (1117, 'Lejos Del Cielo ', 'Rauw Alejandro', 'lejos_de_cielo.mp3', '02:10:00', 1150, 0),
 (1118, 'Punto 40', 'Rauw Alejandro', 'punto_40.mp3', '03:05:00', 1150, 0),
 (1119, 'Cosa Guapa ', 'Rauw Alejandro', 'cosa_guapa.mp3', '03:25:00', 1151, 0),
-(1120, 'Desenfocao', 'Rauw Alejandro', 'desenfocao.mp3', '02:55:00', 1151, 3),
+(1120, 'Desenfocao', 'Rauw Alejandro', 'desenfocao.mp3', '02:55:00', 1151, 15),
 (1121, 'La Old Skul', 'Rauw Alejandro', 'la_old_skul.mp3', '03:15:00', 1151, 1),
 (1122, 'Sexo Virtual.mp3', 'Rauw Alejandro', 'sexo_virtual.mp3', '03:10:00', 1151, 0),
 (1123, 'Cuando Te Fuiste', 'Aitana', 'cuando_te_fuiste.mp3', '03:00:00', 1158, 0),
 (1124, '- +', 'Aitana', 'menos_mas.mp3', '03:00:00', 1158, 0),
 (1125, 'No Te Has Ido Y Ya Te Extraño', 'Aitana', 'no_te_has_ido_y_ya_te_extraño.mp3', '03:00:00', 1158, 0),
 (1126, 'Si No Vas A Volver', 'Aitana', 'si_no_vas_volver.mp3', '03:00:00', 1158, 0),
-(1127, '24 Rosas', 'Aitana', '24_rosas.mp3', '03:00:00', 1157, 0),
-(1128, 'Los Angeles', 'Aitana', 'los_angeles.mp3', '03:00:00', 1157, 0),
+(1127, '24 Rosas', 'Aitana', '24_rosas.mp3', '03:00:00', 1157, 4),
+(1128, 'Los Angeles', 'Aitana', 'los_angeles.mp3', '03:00:00', 1157, 30),
 (1129, 'Luna', 'Aitana', 'luna.mp3', '03:00:00', 1157, 0),
 (1130, 'MiAmor', 'Aitana', 'miamor.mp3', '03:00:00', 1157, 0),
 (1131, 'Cuando Hables Con Él', 'Aitana', 'cuando_hables_con_el.mp3', '03:00:00', 1159, 0),
@@ -230,7 +225,7 @@ INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio
 (1153, 'Tata', 'Eladio Carrión', 'tata.mp3', '03:00:00', 1156, 0),
 (1154, 'Todo O Nada', 'Eladio Carrión', 'todo_o_nada.mp3', '03:00:00', 1156, 0),
 (1155, 'Cuenta A 10', 'Eladio Carrión', 'cuenta_a_10.mp3', '03:00:00', 1153, 0),
-(1156, 'El Reggaeton Del Disco', 'Eladio Carrión ', 'el_reggaeton_del_disco.mp3', '03:00:00', 1153, 0),
+(1156, 'El Reggaeton Del Disco', 'Eladio Carrión ', 'el_reggaeton_del_disco.mp3', '03:00:00', 1153, 4),
 (1157, 'Tiffany', 'Eladio Carrión', 'tiffany.mp3', '03:00:00', 1153, 0),
 (1158, 'Vetements', 'Eladio Carrión', 'vetements.mp3', '03:00:00', 1153, 0),
 (1159, '3 AM', 'Eladio Carrión', '3_am.mp3', '03:00:00', 1154, 0),
@@ -243,7 +238,7 @@ INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio
 (1166, 'Me Gustas Natural', 'Eladio Carrión', 'me_gustas_natural.mp3', '03:00:00', 1155, 0),
 (1167, 'Dame', 'Quevedo', 'dame.mp3', '03:00:00', 1160, 0),
 (1168, 'Sin Señal', 'Quevedop', 'sin_señal.mp3', '03:00:00', 1160, 0),
-(1169, 'Vista Al Mar', 'Quevedo', 'vista_al_mar.mp3', '03:00:00', 1160, 0),
+(1169, 'Vista Al Mar', 'Quevedo', 'vista_al_mar.mp3', '03:00:00', 1160, 2),
 (1170, 'Wanda', 'Quevedo', 'wanda.mp3', '03:00:00', 1160, 0),
 (1171, 'Gran Vía', 'Quevedo', 'gran_via.mp3', '03:00:00', 1161, 0),
 (1172, 'Mr Moondial', 'Quevedo', 'mr_moondial.mp3', '03:00:00', 1161, 0),
@@ -252,23 +247,23 @@ INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio
 (1175, 'Don\'t You Remember', 'Adele', 'dont_you_remember.mp3', '03:00:00', 1171, 0),
 (1176, 'He Won\'t Go', 'Adele', 'he_wont_go.mp3', '03:00:00', 1171, 0),
 (1177, 'Lovesong', 'Adele', 'lovesong.mp3', '03:00:00', 1171, 0),
-(1178, 'Hello', 'Adele', 'hello.mp3', '03:00:00', 1173, 0),
-(1179, 'I Miss You', 'Adele', 'i_miss_you.mp3', '03:00:00', 1173, 0),
-(1180, 'Remedy', 'Adele', 'remedy.mp3', '03:00:00', 1173, 0),
-(1181, 'River Lea', 'Adele', 'river_lea.mp3', '03:00:00', 1173, 0),
-(1182, 'Can I Get It', 'Adele', 'can_i_get_it.mp3', '03:00:00', 1172, 0),
-(1183, 'Easy On Me ', 'Adele ', 'easy_on_me.mp3', '03:00:00', 1172, 0),
-(1184, 'Hold On', 'Adele', 'hold_on.mp3', '03:00:00', 1172, 0),
-(1185, 'Oh My God', 'Adele', 'oh_my_god.mp3', '03:00:00', 1172, 0),
-(1186, 'Consideration', 'Rihanna', 'consideration.mp3', '03:00:00', 1174, 0),
-(1187, 'Needed Me', 'Rihanna', 'needed_me.mp3', '03:00:00', 1174, 0),
-(1188, 'Woo', 'Rihanna', 'woo.mp3', '03:00:00', 1174, 0),
-(1189, 'Work', 'Rihanna', 'work.mp3', '03:00:00', 1174, 0),
-(1190, 'Drunk On Love', 'Rihanna', 'drunk_on_love.mp3', '03:00:00', 1176, 1),
-(1191, 'Fool In Love', 'Rihanna', 'fool_in_love.mp3', '03:00:00', 1176, 0),
-(1192, 'We Found Love', 'Rihanna', 'we_found_love.mp3', '03:00:00', 1176, 1),
-(1193, 'You Da One', 'Rihanna', 'you_da_one.mp3', '03:00:00', 1176, 0),
-(1194, 'Only Girl ', 'Loud', 'only_girl.mp3', '03:00:00', 1175, 0),
+(1178, 'Hello', 'Adele', 'hello.mp3', '03:00:00', 1173, 1),
+(1179, 'I Miss You', 'Adele', 'i_miss_you.mp3', '03:00:00', 1173, 1),
+(1180, 'Remedy', 'Adele', 'remedy.mp3', '03:00:00', 1173, 1),
+(1181, 'River Lea', 'Adele', 'river_lea.mp3', '03:00:00', 1173, 5),
+(1182, 'Can I Get It', 'Adele', 'can_i_get_it.mp3', '03:00:00', 1172, 1),
+(1183, 'Easy On Me ', 'Adele ', 'easy_on_me.mp3', '03:00:00', 1172, 1),
+(1184, 'Hold On', 'Adele', 'hold_on.mp3', '03:00:00', 1172, 1),
+(1185, 'Oh My God', 'Adele', 'oh_my_god.mp3', '03:00:00', 1172, 4),
+(1186, 'Consideration', 'Rihanna', 'consideration.mp3', '03:00:00', 1174, 1),
+(1187, 'Needed Me', 'Rihanna', 'needed_me.mp3', '03:00:00', 1174, 4),
+(1188, 'Woo', 'Rihanna', 'woo.mp3', '03:00:00', 1174, 1),
+(1189, 'Work', 'Rihanna', 'work.mp3', '03:00:00', 1174, 4),
+(1190, 'Drunk On Love', 'Rihanna', 'drunk_on_love.mp3', '03:00:00', 1176, 2),
+(1191, 'Fool In Love', 'Rihanna', 'fool_in_love.mp3', '03:00:00', 1176, 1),
+(1192, 'We Found Love', 'Rihanna', 'we_found_love.mp3', '03:00:00', 1176, 3),
+(1193, 'You Da One', 'Rihanna', 'you_da_one.mp3', '03:00:00', 1176, 4),
+(1194, 'Only Girl ', 'Loud', 'only_girl.mp3', '03:00:00', 1175, 5),
 (1195, 'S&M', 'Rihamma', 's_and_m.mp3', '03:00:00', 1175, 0),
 (1196, 'Skin', 'Rihanna', 'skin.mp3', '03:00:00', 1175, 0),
 (1197, 'What\'s My Name?', 'Rihanna', 'whats_my_name.mp3', '03:00:00', 1175, 0),
@@ -300,22 +295,22 @@ INSERT INTO `canciones` (`id_cancion`, `nom_cancion`, `nom_artista`, `ruta_audio
 (1223, 'Happier', 'Olivia Rodrigo', 'happier.mp3', '03:00:00', 1162, 0),
 (1224, 'Hope Ur Ok', 'Olivia Rodrigo', 'hope_ur_ok.mp3', '03:00:00', 1162, 0),
 (1225, 'Traitor', 'Olivia Rodrigo', 'traitor.mp3', '03:00:00', 1162, 0),
-(1226, 'Happier Than Ever', 'Billie Eillish', 'happier_than_ever.mp3', '03:00:00', 1178, 0),
+(1226, 'Happier Than Ever', 'Billie Eillish', 'happier_than_ever.mp3', '03:00:00', 1178, 1),
 (1227, 'Lost_Cause', 'Billie Eillish', 'lost_cause.mp3', '03:00:00', 1178, 0),
 (1228, 'NDA', 'Billie Eillish', 'nda.mp3', '03:00:00', 1178, 0),
 (1229, 'Oxytocin', 'Billie Eillish', 'oxytocin.mp3', '03:00:00', 1178, 0),
-(1230, 'Birds Of A Feather', 'Billie Eillish', 'birds_of_a_feather.mp3', '03:00:00', 1177, 1),
+(1230, 'Birds Of A Feather', 'Billie Eillish', 'birds_of_a_feather.mp3', '03:00:00', 1177, 3),
 (1231, 'L\'amour De Ma Vie', 'Billie Eillish', 'lamour_de_ma_vie.mp3', '03:00:00', 1177, 0),
-(1232, 'The Greatest', 'Billie Eillish', 'the_greatest.mp3', '03:00:00', 1177, 1),
-(1233, 'Wildflower', 'Billie Eillish', 'wildflower.mp3', '03:00:00', 1177, 0),
+(1232, 'The Greatest', 'Billie Eillish', 'the_greatest.mp3', '03:00:00', 1177, 2),
+(1233, 'Wildflower', 'Billie Eillish', 'wildflower.mp3', '03:00:00', 1177, 1),
 (1234, 'Bad Guy', 'Billie Eillish', 'bad_guy.mp3', '03:00:00', 1179, 0),
 (1235, 'I Love You', 'Billie Eillish', 'i_love_you.mp3', '03:00:00', 1179, 0),
-(1236, 'Listen Before I Go', 'Billie Eillish', 'listen_before_i_go.mp3', '03:00:00', 1179, 0),
-(1237, 'Wish You Were Gay', 'Billie Eillish', 'wish_you_were_gay.mp3', '03:00:00', 1179, 0),
-(1238, 'Better Than Me ', 'Doja Cat', 'better_than_me.mp3', '03:00:00', 1168, 0),
-(1239, 'Rules', 'Doja Cat', 'rules.mp3', '03:00:00', 1168, 0),
+(1236, 'Listen Before I Go', 'Billie Eillish', 'listen_before_i_go.mp3', '03:00:00', 1179, 1),
+(1237, 'Wish You Were Gay', 'Billie Eillish', 'wish_you_were_gay.mp3', '03:00:00', 1179, 1),
+(1238, 'Better Than Me ', 'Doja Cat', 'better_than_me.mp3', '03:00:00', 1168, 1),
+(1239, 'Rules', 'Doja Cat', 'rules.mp3', '03:00:00', 1168, 1),
 (1240, 'Say So', 'Doja cat', 'say_so.mp3', '03:00:00', 1168, 0),
-(1241, 'Streets', 'Doja Cat', 'streets.mp3', '03:00:00', 1168, 0),
+(1241, 'Streets', 'Doja Cat', 'streets.mp3', '03:00:00', 1168, 1),
 (1242, 'Ain\'t Shit', 'Doja Cat', 'aint_shit.mp3', '03:00:00', 1167, 0),
 (1243, 'Get INto It (YUH)', 'Doja Cat', 'get_into_it_yuh.mp3', '03:00:00', 1167, 1),
 (1244, 'Need To Know', 'Doja Cat', 'need_to_know.mp3', '03:00:00', 1167, 1),
@@ -374,7 +369,13 @@ INSERT INTO `canciones_playlists` (`id_playlist`, `id_cancion`) VALUES
 (2, 1120),
 (3, 1114),
 (3, 1115),
-(3, 1116);
+(3, 1116),
+(3, 1192),
+(3, 1226),
+(3, 1236),
+(3, 1237),
+(4, 1011),
+(4, 1065);
 
 -- --------------------------------------------------------
 
@@ -416,7 +417,8 @@ CREATE TABLE `playlists` (
 INSERT INTO `playlists` (`id_playlist`, `nom_playlist`, `id_usu`, `f_creacion`) VALUES
 (1, 'Bellakeo', 1, '2025-06-04 20:51:18'),
 (2, 'Otro rollo', 2, '2025-06-04 21:03:10'),
-(3, 'Pop', 2, '2025-06-16 12:31:58');
+(3, 'Pop', 2, '2025-06-16 12:31:58'),
+(4, 'De Todo Un Poco', 20, '2025-06-18 17:15:40');
 
 -- --------------------------------------------------------
 
@@ -436,7 +438,33 @@ CREATE TABLE `reproducciones` (
 --
 
 INSERT INTO `reproducciones` (`id_reproduccion`, `id_usu`, `id_cancion`, `fecha`) VALUES
-(1, 1, 1010, '2025-06-04 21:00:04');
+(1, 1, 1010, '2025-06-04 21:00:04'),
+(2, 20, 1128, '2025-06-18 20:36:45');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tarjetas`
+--
+
+CREATE TABLE `tarjetas` (
+  `id_tarjeta` int(11) NOT NULL,
+  `id_usu` int(11) NOT NULL,
+  `tarjeta_hash` varchar(255) NOT NULL,
+  `cvv_hash` varchar(255) NOT NULL,
+  `fecha_caducidad_hash` varchar(255) NOT NULL,
+  `tipo_premium` enum('individual','familiar') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tarjetas`
+--
+
+INSERT INTO `tarjetas` (`id_tarjeta`, `id_usu`, `tarjeta_hash`, `cvv_hash`, `fecha_caducidad_hash`, `tipo_premium`) VALUES
+(1, 16, '$2y$10$lPKewNWgz8Rno5jU0tSeT.YM3TTGWNX.gqhK8RWSNtbXQophC0fv.', '$2y$10$rqwGcHzPRRfUKIBmLh3fdeiMUVo0/btSA4Kh3UNIJ7lXtJdWRvUJm', '$2y$10$Fqj3asqrp4m5zpNj1ntdK.sWASXeHek3YfEMH4F9ugqo6BDJ0n3Ye', 'familiar'),
+(2, 17, '$2y$10$uhTWpFBadTgrPFIC0PxltOFzb0NLIfObkwVA3UPbW4YQIRGcb.fLa', '$2y$10$O4Igwx8lf.QtgnGhv44vte5iInH7mDwfFlRCU/xM.WZwIvhXXwneu', '$2y$10$PjEr.3pyV4t5BoOahYKPO.kbUdmhQt1vDhiEA1fA6p285soT5G3fW', 'familiar'),
+(3, 19, '$2y$10$nECAln2neOdKbr3vAtPJc.J3ogFyj485Y7mip5qW0ZHdrHuq4VlVC', '$2y$10$uUKiFp.bz24fNy4UmZTTguhU/r0OGg9tWRCaGEaEO8Wz/dgEOk1QW', '$2y$10$ei9Cu2DwMxvI9gcu0y6dZ.v9mu0LIfHM0XMKdtQxHSnSmDor6mPTe', 'individual'),
+(4, 20, '$2y$10$jtdK6OnhJXjmOZqpnimcg.t/WhRirX8RzEzPzdK3KeQ8tI4yfafTu', '$2y$10$o/sBbrD8LuYn8sjiOWRzH.znKtGiTnQUTxVWy1KMeFiIfgMQxiyay', '$2y$10$zAZrcwVv7heZVwLXJG6NLOBO9BVl9ZRYqOrK.su1a5P0KcGx/0tt6', 'individual');
 
 -- --------------------------------------------------------
 
@@ -448,7 +476,7 @@ CREATE TABLE `usuarios` (
   `id_usu` int(11) NOT NULL,
   `nom_usu` varchar(50) NOT NULL,
   `correo` varchar(50) NOT NULL,
-  `contraseña` varchar(50) NOT NULL,
+  `contraseña` varchar(255) DEFAULT NULL,
   `f_registro` datetime NOT NULL DEFAULT current_timestamp(),
   `id_cuenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -459,16 +487,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usu`, `nom_usu`, `correo`, `contraseña`, `f_registro`, `id_cuenta`) VALUES
 (1, 'Frank', 'frankbun10@gmail.com', 'asir', '2025-06-04 20:49:55', 1),
-(2, 'Fabri', 'fpozoiguamba@gmail.com', 'asir1', '2025-06-04 21:02:41', 2),
-(3, 'Pepe', 'pepe@gmail.com', 'asir2', '0000-00-00 00:00:00', 1),
-(4, 'Ana', 'ana@gmail.com', 'asir3', '2025-06-06 17:11:05', 1),
-(5, 'Juan', 'juan@gmail.com', 'asir4', '2025-06-06 19:49:17', 2),
-(6, 'Pepito', 'pepito@gmail.com', 'asir6', '2025-06-06 22:16:48', 2),
-(7, 'jose', 'jose@gmail.com', 'asir7', '2025-06-09 16:23:57', 1),
-(8, 'Isa', 'isa@gmail.com', 'kali', '2025-06-09 17:00:07', 2),
-(9, 'geison', 'geison@gmail.com', 'kali2', '2025-06-09 17:10:22', 1),
-(10, 'diego', 'diego@gmail.com', 'kali3', '2025-06-09 17:12:23', 2),
-(11, 'yolanda', 'yolanda@gmail.com', 'asir9', '2025-06-16 11:30:20', 1);
+(20, 'Fabri', 'fpozoiguamba@gmail.com', '$2y$10$gLAojl6mouAAPmc/P4CCVewuh9JM3FS9cRwmBUg6bdMevqz.GIjYa', '2025-06-18 15:04:15', 2);
 
 --
 -- Índices para tablas volcadas
@@ -524,6 +543,13 @@ ALTER TABLE `reproducciones`
   ADD KEY `id_cancion` (`id_cancion`);
 
 --
+-- Indices de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  ADD PRIMARY KEY (`id_tarjeta`),
+  ADD KEY `id_usu` (`id_usu`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -563,19 +589,25 @@ ALTER TABLE `cuenta`
 -- AUTO_INCREMENT de la tabla `playlists`
 --
 ALTER TABLE `playlists`
-  MODIFY `id_playlist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_playlist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `reproducciones`
 --
 ALTER TABLE `reproducciones`
-  MODIFY `id_reproduccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_reproduccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  MODIFY `id_tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_usu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas
@@ -612,6 +644,12 @@ ALTER TABLE `playlists`
 ALTER TABLE `reproducciones`
   ADD CONSTRAINT `reproducciones_ibfk_1` FOREIGN KEY (`id_usu`) REFERENCES `usuarios` (`id_usu`),
   ADD CONSTRAINT `reproducciones_ibfk_2` FOREIGN KEY (`id_cancion`) REFERENCES `canciones` (`id_cancion`);
+
+--
+-- Filtros para la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  ADD CONSTRAINT `tarjetas_ibfk_1` FOREIGN KEY (`id_usu`) REFERENCES `usuarios` (`id_usu`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
