@@ -178,12 +178,11 @@ $historial = $result->fetch_all(MYSQLI_ASSOC);
                 <p class="no-songs">No has reproducido ninguna canción todavía.</p>
             <?php endif; ?>
         </div>
-    </main>
-    
-    <footer class="main-footer">
+         <footer class="main-footer">
+            <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <a href="./bien.php">
+                    <a href="../php/bien.php">
                         <img src="../iconos/RHYTMO6.jpg" alt="RhythmoTune Logo">
                     </a>
                 </div>
@@ -194,7 +193,7 @@ $historial = $result->fetch_all(MYSQLI_ASSOC);
                         <li><a href="../html/politica_de_privacidad.html">Política de privacidad</a></li>
                         <li><a href="../html/aviso_legal.html">Aviso legal</a></li>
                         <li><a href="../html/contacto.html">Contacto</a></li>
-                        <li><a href="#">Cookies</a></li>
+                        <!--<li><a href="#">Cookies</a></li>-->
                     </ul>
                 </div>
 
@@ -210,5 +209,6 @@ $historial = $result->fetch_all(MYSQLI_ASSOC);
                 <span>© 2025 RhythmoTune - Salesianas</span>
             </div>
         </footer>
+    </main>
 </body>
 </html>
