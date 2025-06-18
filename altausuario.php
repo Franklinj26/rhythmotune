@@ -21,6 +21,8 @@ session_start();
 require 'conexion.php';
 require 'limpiar.php';
 
+require_once 'php/contacto.php';
+
 function hashData($data) {
     return password_hash($data, PASSWORD_BCRYPT);
 }
@@ -38,6 +40,8 @@ if (isset($_POST['registro'])) {
     $pass = test_input($_POST["pass"]);
     $tipo = test_input($_POST["tipo_cuenta"]);
     $fecha = date("Y-m-d H:i:s");
+
+
 
     $stmt = mysqli_prepare($conn, "SELECT id_usu FROM usuarios WHERE correo = ?");
     mysqli_stmt_bind_param($stmt, "s", $mail);
@@ -63,6 +67,8 @@ if (isset($_POST['registro'])) {
             exit();
         } else {
             echo "<p style='color:#FFF'>✅ Registro exitoso. <a href='altausuario.html'>Iniciar sesión</a></p>";
+            $GestorCorreo = new Contacto();
+            $GestorCorreo->EnviarCorreo($mail, 'Registro hecho correctamente.', 'Nombre registrado: ' . $name . '\nCorreo registrado: ' . $mail);
         }
     } else {
         echo "<p style='color:#FFF'>❌ Error al registrar usuario: " . htmlspecialchars(mysqli_error($conn)) . "</p>";
