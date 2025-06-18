@@ -178,7 +178,7 @@
     }
     
     .menu {
-      width: 100%;
+      width: 60%;
       height: auto;
       position: relative;
     }
@@ -189,15 +189,7 @@
       flex: 1;
     }
     
-    .music-player {
-      left: 0;
-    }
     
-    .music-grid,
-    .artists-grid,
-    .albums-grid {
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    }
     
     /*.footer-grid {
       grid-template-columns: 1fr;
@@ -212,7 +204,7 @@
     }*/
     .footer-logo {
         justify-content: center; /* Centra el logo en móviles */
-        width: 100%; /* Ocupa todo el ancho */
+        width: 90%; /* Ocupa todo el ancho */
         margin-bottom: 1rem; /* Espacio debajo del logo */
     }
     
@@ -221,38 +213,14 @@
         grid-template-columns: 1fr; /* Una sola columna en móviles */
         text-align: center;
     }
+    .social-links img {
+    width: 50%;
+    height: 50%;
+    transition: opacity 0.3s;
+    }
   }
   
   @media (max-width: 480px) {
-    .main-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    
-    .search-bar {
-      width: 75%;
-    }
-    
-    .music-grid,
-    .artists-grid,
-    .albums-grid {
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-    
-    .player-content {
-      flex-wrap: wrap;
-      height: auto;
-      padding: 10px 0;
-    }
-    
-    .song-info,
-    .player-controls,
-    .volume-control {
-      width: 75%;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
 
     .footer-logo {
         justify-content: center; /* Centra el logo en móviles */
@@ -269,7 +237,14 @@
     .footer-logo {
     display: flex;
     justify-content: center;
-    }}
+    }
+.social-links img {
+    width: 50%;
+    height: 50%;
+    transition: opacity 0.3s;
+    }
+
+}
     </style>
 </head>
 <body>
