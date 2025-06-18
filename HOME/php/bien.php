@@ -187,36 +187,24 @@ $albumes = mysqli_fetch_all($result_albumes, MYSQLI_ASSOC);
         </div>
     </div>
 </div>
-        <footer class="main-footer">
-            <div class="footer-grid">
-                <div class="footer-logo">
-                    <a href="./bien.php">
-                        <img src="../iconos/RHYTMO6.jpg" alt="RhythmoTune Logo">
-                    </a>
-                </div>
+        <footer>
+        <div id="footer-container"></div>
 
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="../html/acerca_de.html" target="_blank">Acerca de</a></li>
-                        <li><a href="../html/politica_de_privacidad.html">Política de privacidad</a></li>
-                        <li><a href="../html/aviso_legal.html">Aviso legal</a></li>
-                        <li><a href="../html/contacto.html">Contacto</a></li>
-                        <!--<li><a href="#">Cookies</a></li>-->
-                    </ul>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png" alt="Instagram"></a>
-                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png" alt="Twitter/X"></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png" alt="Facebook"></a>
-                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg" alt="LinkedIn"></a>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <span>© 2025 RhythmoTune - Salesianas</span>
-            </div>
-        </footer>
+        <script>
+            fetch('footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error("No se encontró footer.html");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Error cargando el footer:", error);
+                    document.getElementById('footer-container').innerHTML = "<p>Footer no disponible</p>";
+                });
+        </script>
+      </footer>
     </main>
     <script src="../js/script.js"></script>
 </body>

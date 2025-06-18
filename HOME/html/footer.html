@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+    <style>
+        body{
+            background-color: #0e0e15;
+            color: white;
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            /* Flexbox para layout horizontal */
+            height: 93vh;
+            /* Altura completa de la pantalla */
+        }
+
+        hr{
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        .container_footer{
+            padding: 0%;
+            width: 100%;
+            height: 250px;
+            display: flex;
+        }
+
+        .container_footer>div{
+            margin: auto;
+            padding: 0%;
+            height: 100%;
+            width: 33%;
+            overflow: auto;
+        }
+
+        .logotipo{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .logotipo>a{
+            text-align: center;
+            background-size: cover;
+        }
+
+        .logotipo>a>img{
+            width: 49%;
+            background-size: cover;
+        }
+
+        .enlaces-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 1rem;
+        }
+
+        .enlace-item {
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .enlace-item h5 {
+            margin: 0;
+        }
+
+        .enlace-item a {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .enlace-item:hover {
+            transform: scale(1.05);
+        }
+
+        .enlace-item a:hover {
+            background-color: white;
+            color: red !important;
+            border-radius: 5px;
+        }
+
+        .redes_sociales{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .redes_sociales>a{
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .redes_sociales>a>img{
+            width: 50%;
+            height: 50%;
+            margin-top: 2%;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .pie_pagina{
+            text-align: right;
+            margin-top: 20px;
+            margin-left: 0%;
+            margin-bottom: 0%;
+        }
+
+        .pie_pagina>span>img{
+            width: 0.9%;
+        }
+ </style>
+</head>
+<body>
+    <footer>
+    <hr>
+    <div class="container_footer">
+        <br>
+
+        <div class="logotipo">
+          <a href="bien.html">
+            <img src="iconos/RHYTMO6.jpg">
+          </a>
+        </div>
+
+        <div class="enlaces-container">
+          <div class="enlace-item">
+            <h5><a href="acerca_de.html" target="_blank">Acerca de</a></h5>
+          </div>
+          <div class="enlace-item">
+            <h5><a href="politica_de_privacidad.html">Política de privacidad</a></h5>
+          </div>
+          <div class="enlace-item">
+            <h5><a href="aviso_legal.html">Aviso legal</a></h5>
+          </div>
+          <div class="enlace-item">
+            <h5><a href="contacto.html">Contacto</a></h5>
+          </div>
+        </div>
+
+        <div class="redes_sociales">
+          <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png"></a>
+          <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png"></a>
+          <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png"></a>
+          <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg"></a>
+        </div>
+        </div>
+      <div class="pie_pagina"><span><img src="iconos/copyright.png">  </span>Copyright Salesianas2025</div>
+    </div>
+      </div>
+    </footer>
+</body>
+</html>
