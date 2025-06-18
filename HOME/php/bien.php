@@ -192,7 +192,7 @@ $albumes = mysqli_fetch_all($result_albumes, MYSQLI_ASSOC);
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
-                    <a href="./bien.php">
+                    <a href="../php/bien.php">
                         <img src="../iconos/RHYTMO6.jpg" alt="RhythmoTune Logo">
                     </a>
                 </div>
