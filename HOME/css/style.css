@@ -503,13 +503,12 @@
 
 .footer-logo {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .footer-logo img {
-    width: 150px;
-    height: auto;
-    filter: brightness(0) invert(1);
+    width: 60%;
+    max-width: 200px;
 }
 
 /* Contenedor de enlaces centrado */
