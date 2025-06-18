@@ -157,40 +157,19 @@
             /*border-top: 1px solid rgba(255, 255, 255, 0.1);*/
         }
 
-        @media (min-width: 768px) {
+@media (min-width: 768px) {
     .footer-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-        align-items: center;
-        padding: 0 1rem;
-    }
-    
-    .footer-logo {
-        justify-content: flex-start;
-    }
-    
-    .footer-links ul {
+        flex-direction: row;
+        justify-content: space-between;
         align-items: flex-start;
     }
-    
-    .social-links {
-        justify-content: flex-end;
-    }
-}
 
-/* Ajustes para móviles muy pequeños */
-@media (max-width: 360px) {
-    .social-links {
-        gap: 1rem;
+    .footer-links ul {
+        text-align: left;
     }
-    
-    .social-links a {
-        width: 35px;
-        height: 35px;
-        min-width: 35px;
-    }
-    
-    .footer-links a {
-        font-size: 0.85rem;
+
+    .footer-links li {
+        margin-bottom: 0.4rem;
     }
 }
     </style>
