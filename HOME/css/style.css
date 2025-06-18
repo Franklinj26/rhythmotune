@@ -480,93 +480,84 @@
     border-radius: 4px;
   }
   
-  hr {
+hr {
     margin-top: 2%;
     margin-bottom: 2%;
     width: 100%;
     border: 0;
-    border-top: 1px solid #333; /* Línea más visible */
-  }
+    border-top: 1px solid #333;
+}
 
-  /* Footer */
+/* --- FOOTER --- */
 .main-footer {
-    margin-top:auto;
-    padding: 3rem 0 2rem;
+    margin-top: 5rem;
+    padding: 3rem 1rem 2rem;
     background-color: #0e0e15;
     color: white;
-    /*font-family: "Poppins", sans-serif;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);*/
 }
 
 .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center; /* Centra verticalmente todos los elementos */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.footer-logo {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .footer-logo img {
-    width: 60%;
-    max-width: 200px;
-}
-
-/* Contenedor de enlaces centrado */
-.footer-links {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    width: 100%;
+    width: 150px;
+    height: auto;
 }
 
 .footer-links ul {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
     padding: 0;
     margin: 0;
-    text-align: center; /* Centra el texto dentro de los enlaces */
+}
+
+.footer-links li {
+    margin-bottom: 0.6rem;
 }
 
 .footer-links a {
     color: white;
     text-decoration: none;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
     color: #04BD7D;
-    transform: translateX(5px);
 }
 
 .social-links {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
 }
 
 .social-links a {
     display: flex;
-    width: 25%;
-    /*height: 36px;*/
-    transition: transform 0.3s ease;
+    width: 35px;
+    height: 35px;
     justify-content: center;
     align-items: center;
 }
 
 .social-links img {
     width: 100%;
-    height: 100%;
-    transition: opacity 0.3s;
+    height: auto;
+    transition: opacity 0.3s ease;
+}
+
+.copyright {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-top: 2rem;
 }
 
 .copyright {
