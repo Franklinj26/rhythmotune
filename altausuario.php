@@ -12,6 +12,11 @@
         <div class="form-contents">
             <h1 id="title">Bienvenido</h1>
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
 session_start();
 require 'conexion.php';
 require 'limpiar.php';
