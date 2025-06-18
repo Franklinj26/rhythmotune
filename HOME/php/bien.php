@@ -123,7 +123,7 @@ $albumes = mysqli_fetch_all($result_albumes, MYSQLI_ASSOC);
     <div class="artists-grid">
         <?php foreach ($artistas as $artista): ?>
         <div class="artist-card" 
-             onclick="window.location.href='ver_artista.php?id=<?php echo $artista['id_artista']; ?>'">
+             onclick="window.location.href='ver_artista.php?id_artista=<?php echo $artista['id_artista']; ?>'">
             <?php if (!empty($artista['foto_artista'])): ?>
                 <img src="../portada/artistas/<?php echo htmlspecialchars($artista['foto_artista']); ?>" 
                      alt="<?php echo htmlspecialchars($artista['nom_artista']); ?>">
