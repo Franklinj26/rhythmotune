@@ -80,7 +80,7 @@ $resultado = mysqli_query($conn, $sql);
                     <li class="nav-item"><a href="bien.php">Home</a></li>
                     <li class="nav-item"><a href="./artistas.php">Artistas</a></li>
                     <li class="nav-item"><a href="playlists.php">Mis Playlists</a></li>
-                    <li class="nav-item"><a href="reproducciones.php">Canciones Escuchadas</a></li>
+                    <li class="nav-item"><a href="./historial.php">Canciones Escuchadas</a></li>
                 </ul>
             </nav>
         </div>
