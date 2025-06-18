@@ -495,6 +495,10 @@
     margin-bottom: 2rem;
   }
   
+.footer-logo>a{
+  text-align: center;
+}
+
   .footer-logo img {
     width: 60%;
     max-width: 200px;
