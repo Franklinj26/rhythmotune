@@ -157,61 +157,47 @@
             /*border-top: 1px solid rgba(255, 255, 255, 0.1);*/
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
+            .contenedor_politica {
+                padding: 40px;
+            }
 
-        .menu {
-            width: 100%;
-            height: auto;
-            position: relative;
+            .Titulo {
+                font-size: 30px;
+                margin: 30px 0;
             }
-        #main-content {
-            margin-left: 0;
-            padding: 1.5rem;
-            flex: 1;
+
+            .texto1 {
+                width: 80%;
+                margin: 0 auto;
             }
-        .footer-logo {
-                justify-content: center; /* Centra el logo en móviles */
-                width: 100%; /* Ocupa todo el ancho */
-                margin-bottom: 1rem; /* Espacio debajo del logo */
+
+            .texto1 h3 {
+                font-size: 25px;
             }
-            
-            /* Si usas grid o flex en el contenedor padre, ajusta también: */
+
+            .texto1 p {
+                font-size: 18px;
+            }
+
             .footer-grid {
-                grid-template-columns: 1fr; /* Una sola columna en móviles */
-                text-align: center;
-            }
-        .social-links {
-            justify-content: flex-start;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                text-align: left;
             }
 
-        }
+            .footer-logo {
+                justify-content: flex-start;
+                width: auto;
+            }
 
+            .footer-links ul {
+                align-items: flex-start;
+            }
 
-        @media (max-width: 480px) {
-
-        .menu {
-            width: 100%;
-            height: auto;
-            position: relative;
-            }
-        #main-content {
-            margin-left: 0;
-            padding: 1.5rem;
-            flex: 1;
-            }
-        .footer-logo {
-                justify-content: center; /* Centra el logo en móviles */
-                width: 100%; /* Ocupa todo el ancho */
-                margin-bottom: 1rem; /* Espacio debajo del logo */
-            }
-            
-            /* Si usas grid o flex en el contenedor padre, ajusta también: */
-            .footer-grid {
-                grid-template-columns: 1fr; /* Una sola columna en móviles */
-                text-align: center;
-            }
-        .social-links {
-            justify-content: flex-start;
+            .social-links {
+                justify-content: flex-end;
             }
         }
     </style>
