@@ -628,6 +628,10 @@
     .social-links {
       justify-content: flex-start;
     }
+    .footer-logo {
+    display: flex;
+    justify-content: center;
+    }
   }
   
   @media (max-width: 480px) {
@@ -659,5 +663,9 @@
       width: 100%;
       justify-content: center;
       margin-bottom: 10px;
+    }
+    .footer-logo {
+    display: flex;
+    justify-content: center;
     }
   }
