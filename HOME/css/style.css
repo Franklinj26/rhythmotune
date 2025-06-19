@@ -1324,7 +1324,8 @@ hr {
     
 }
 
-/*Botón flotante */
+
+/* Botón flotante - Visible en ordenador y móvil cuando tenga la clase .visible */
 .floating-action-button {
   position: fixed;
   bottom: 30px;
@@ -1334,7 +1335,7 @@ hr {
   background-color: #1DB954;
   color: white;
   border-radius: 50%;
-  display: none;
+  display: none; /* Oculto por defecto */
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -1346,6 +1347,7 @@ hr {
   transition: all 0.3s ease;
 }
 
+/* Se muestra cuando tiene la clase .visible, en cualquier dispositivo */
 .floating-action-button.visible {
   display: flex;
 }
