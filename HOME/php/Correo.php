@@ -5,11 +5,6 @@ session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'phpmailer/src/Exception.php';
-require 'phpmailer/src/PHPMailer.php';
-require 'phpmailer/src/SMTP.php';
-
-
 final class Correo {
     public function EnviarCorreo($correo_destinatario, $asunto_correo, $cuerpo_correo){
         // Creamos una instancia PHPMailer por cada correo a enviar.

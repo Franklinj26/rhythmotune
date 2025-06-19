@@ -21,6 +21,10 @@ session_start();
 require 'conexion.php';
 require 'limpiar.php';
 
+//Enviar correos
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 require 'HOME/php/Correo.php';
 
 function hashData($data) {
