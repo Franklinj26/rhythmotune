@@ -199,6 +199,16 @@ $playlists = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
     </main>
     <script src="../js/script.js"></script>
     <script>
+
+    document.querySelector('.search-bar').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const playlistCards = document.querySelectorAll('.playlist-card');
+
+        playlistCards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+        });
+    });
     // Inicialización común para todas las páginas
     document.addEventListener('DOMContentLoaded', function() {
         // Cargar estado del reproductor si existe

@@ -248,6 +248,18 @@ function playAlbum() {
         alert('No hay canciones en este álbum');
     }
 }
+
+document.querySelector('.search-bar').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const songItems = document.querySelectorAll('.song-item');
+
+    songItems.forEach(item => {
+        const title = item.querySelector('.song-title').textContent.toLowerCase();
+        const matches = title.includes(searchTerm);
+
+        item.style.display = matches ? 'flex' : 'none';
+    });
+});
 </script>
     
     <style>
