@@ -33,6 +33,13 @@ if (isset($_POST['envio'])) {
         . '<br>Tu mensaje:<br><br> ' . $mensaje
         . '<br><br>¡Gracias por contactar con nosotros! 🤓👆'
     );
+
+    $GestorCorreo->EnviarCorreo('rhythmotune@gmail.com', $asunto, 
+        $mensaje
+        . '<br><br>Nombre del remitente: ' . $nombre
+        . '<br>Correo del remitente: ' . $email
+    );
+
     header("Location: ../html/contacto.html");
 }
 ?>
