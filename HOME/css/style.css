@@ -239,6 +239,139 @@ gap: 15px;
 margin-top: 20px;
 }
 
+/* Estilos para los checkboxes */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-right: 15px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #2d2d2d;
+  border-radius: 4px;
+  border: 2px solid #4a4a4a;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #3d3d3d;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #1db954;
+  border-color: #1db954;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* Estilos para los elementos de la canción */
+.song-add-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #282828;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.song-add-item:hover {
+  background-color: #383838;
+}
+
+.song-add-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+
+.song-info-add {
+  flex-grow: 1;
+}
+
+.song-info-add span {
+  display: block;
+  font-size: 0.9em;
+  color: #b3b3b3;
+}
+
+/* Estilos para los botones de acción */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #1db954;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #1ed760;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 1px solid #535353;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #2a2a2a;
+}
+
 .btn-play {
 background-color: var(--primary-color);
 color: white;
@@ -345,6 +478,23 @@ font-size: 0.9rem;
   border-radius: 8px;
   margin-right: 20px; /* Más espacio entre imagen y texto */
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.select-all-container {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #383838;
+  border-radius: 4px;
+}
+
+.select-all-container .checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.select-all-container .checkbox-container span:last-child {
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 .song-info-add {
@@ -824,6 +974,15 @@ hr {
 
 /*Modificaciones*/
 
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins';
+}
+
 .container {
     width: 100%;
     min-height: 100vh;
@@ -928,6 +1087,46 @@ hr {
     margin-top: 20px;
 }
 
+.search-form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.no-results {
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+}
+
 .btn-field button {
     flex: 1;
     padding: 12px;
@@ -949,6 +1148,134 @@ hr {
     color: #2C2F35;
 }
 
+/* Estilos para el contador de seleccionadas */
+#selectedCounter {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 15px;
+}
+
+/* Estilos para el contenedor de "Seleccionar todas" */
+.select-all-container {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Estilos para los elementos de canción */
+.song-add-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.song-add-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.song-add-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.song-info-add {
+  flex: 1;
+}
+
+.song-info-add span {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 5px;
+}
+
+/* Botón flotante */
+.floating-action-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #1DB954; /* Verde de Spotify */
+  color: white;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.floating-action-button.visible {
+  display: flex;
+}
+
+.floating-action-button:hover {
+  background-color: #1ED760; /* Verde más claro al pasar el mouse */
+  transform: scale(1.1);
+}
+
+/* Estilos para los botones de acción */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1ed760;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.no-songs-message {
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .form-wrapper {
@@ -963,3 +1290,4 @@ hr {
         width: 100%;
     }
 }
+
