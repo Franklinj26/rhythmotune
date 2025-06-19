@@ -243,45 +243,36 @@ $historial = $result->fetch_all(MYSQLI_ASSOC);
     </main>
     
 
-        <script>
-    // Inicialización común para todas las páginas
-    document.addEventListener('DOMContentLoaded', function() {
-        // Cargar estado del reproductor si existe
-        if (typeof loadState === 'function') {
-            loadState();
-        }
-        
-        // Configurar el control de volumen
-        const volumeSlider = document.getElementById('volumeSlider');
-        if (volumeSlider) {
-            volumeSlider.addEventListener('input', function() {
-                const audioPlayer = document.getElementById('audioPlayer');
-                if (audioPlayer) {
-                    audioPlayer.volume = this.value;
-                }
-            });
-        }
-    });
+<script>
+    const allSongs = <?php echo json_encode(array_map(function($cancion) {
+        return [
+            'id' => $cancion['id_cancion'],
+            'title' => $cancion['nom_cancion'],
+            'artist' => $cancion['nom_artista'],
+            'album' => $cancion['nom_album'],
+            'cover' => '../portada/albums/'.($cancion['portada_album'] ?: 'album-placeholder.png'),
+            'audio' => '../musica/'.$cancion['nombre_directorio'].'/'.$cancion['ruta_audio'],
+            'duration' => '0:00' // Puedes calcular esto si tienes la duración en la BD
+        ];
+    }, $todas_las_canciones)); ?>;
 
-    // Inicialización común para todas las páginas
-    document.addEventListener('DOMContentLoaded', function() {
-        // Cargar estado del reproductor si existe
-        if (typeof loadState === 'function') {
-            loadState();
-        }
-        
-        // Configurar el control de volumen
-        const volumeSlider = document.getElementById('volumeSlider');
-        if (volumeSlider) {
-            volumeSlider.addEventListener('input', function() {
-                const audioPlayer = document.getElementById('audioPlayer');
-                if (audioPlayer) {
-                    audioPlayer.volume = this.value;
-                }
-            });
-        }
-    });
-</script>
+document.addEventListener('DOMContentLoaded', function() {
+            if (typeof loadState === 'function') {
+                loadState();
+            }
+
+            const volumeSlider = document.getElementById('volumeSlider');
+            if (volumeSlider) {
+                volumeSlider.addEventListener('input', function() {
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    if (audioPlayer) {
+                        audioPlayer.volume = this.value;
+                    }
+                });
+            }
+        });
+    </script>
+        <script src="../js/script.js"></script>
 </body>
 </html>
 
