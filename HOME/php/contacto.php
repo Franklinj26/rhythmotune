@@ -34,4 +34,5 @@ if (isset($_POST['envio'])) {
         . '<br>¡Gracias por contactar con nosotros!'
     );
     header("Location: ../html/contacto.html");
+}
 ?>
