@@ -41,7 +41,7 @@ final class Contacto {
             $mail1->send();
         
             // Si todo ha salido bien, le mostramos al usuario que se han enviado.
-            header('Location: ../html/contacto.html');
+            header('Location: /HOME/html/contacto.html');
         } catch (Exception $e) {
             // Si todo ha salido mal, le mostramos al usuario que algo ha salido mal.
             header('Location: ../respuestas/CorreoFallido.php');
