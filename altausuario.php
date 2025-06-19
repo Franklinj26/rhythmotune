@@ -21,7 +21,7 @@ session_start();
 require 'conexion.php';
 require 'limpiar.php';
 
-require 'HOME/php/contacto.php';
+require 'HOME/php/Correo.php';
 
 function hashData($data) {
     return password_hash($data, PASSWORD_BCRYPT);
@@ -67,7 +67,7 @@ if (isset($_POST['registro'])) {
             exit();
         } else {
             echo "<p style='color:#FFF'>✅ Registro exitoso. <a href='altausuario.html'>Iniciar sesión</a></p>";
-            $GestorCorreo = new Contacto();
+            $GestorCorreo = new Correo();
             $GestorCorreo->EnviarCorreo($mail, 'Registro hecho correctamente.', 'Nombre registrado: ' . $name . '<br>Correo registrado: ' . $mail);
         }
     } else {
@@ -99,7 +99,7 @@ if (isset($_POST['login'])) {
             $_SESSION['usuario_id'] = $usuario['id_usu'];
             $_SESSION['usuario_nombre'] = $usuario['nom_usu'];
             //Envio de correo electrónico
-            $GestorCorreo = new Contacto();
+            $GestorCorreo = new Correo();
             $GestorCorreo->EnviarCorreo($mail, 'Se ha iniciado sesión correctamente.', 'Correo de sesión: ' . $mail);
             header("Location: HOME/php/bien.php");
             exit();
