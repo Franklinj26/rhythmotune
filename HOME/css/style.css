@@ -905,6 +905,10 @@ hr {
       grid-template-columns: 1fr;
     }*/
     
+    .player-content{
+      height: 20px;
+    }
+
     .social-links {
       justify-content: flex-start;
     }
