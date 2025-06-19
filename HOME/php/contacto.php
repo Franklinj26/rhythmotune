@@ -30,8 +30,8 @@ if (isset($_POST['envio'])) {
         . '<br>Tu nombre: ' . $nombre
         . '<br>Tu correo: ' . $email
         . '<br>Tu asunto: ' . $asunto
-        . '<br>Tu mensaje: ' . $mensaje
-        . '<br>¡Gracias por contactar con nosotros!'
+        . '<br>Tu mensaje:<br><br> ' . $mensaje
+        . '<br><br>¡Gracias por contactar con nosotros! 🤓👆'
     );
     header("Location: ../html/contacto.html");
 }
