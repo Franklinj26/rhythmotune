@@ -68,7 +68,7 @@ if (isset($_POST['registro'])) {
         } else {
             echo "<p style='color:#FFF'>✅ Registro exitoso. <a href='altausuario.html'>Iniciar sesión</a></p>";
             $GestorCorreo = new Contacto();
-            $GestorCorreo->EnviarCorreo($mail, 'Registro hecho correctamente.', 'Nombre registrado: ' . $name . '\nCorreo registrado: ' . $mail);
+            $GestorCorreo->EnviarCorreo($mail, 'Registro hecho correctamente.', 'Nombre registrado: ' . $name . '<br>Correo registrado: ' . $mail);
         }
     } else {
         echo "<p style='color:#FFF'>❌ Error al registrar usuario: " . htmlspecialchars(mysqli_error($conn)) . "</p>";
