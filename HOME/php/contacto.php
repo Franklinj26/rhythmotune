@@ -33,7 +33,7 @@ if (isset($_POST['envio'])) {
         . '<br>Tu correo: ' . $email
         . '<br>Tu asunto: ' . $asunto
         . '<br>Tu mensaje:<br><br> ' . $mensaje
-        . '<br><br>¡Gracias por contactar con nosotros! 🤓👆'
+        . '<br><br>¡Gracias por contactar con nosotros! 😊'
     );
 
     //Enviar correo al administrador
