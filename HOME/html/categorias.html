@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias</title>
+    <style>
+        body{
+            background-color: #0e0e15;
+            color: white;
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            /* Flexbox para layout horizontal */
+            height: 93vh;
+            /* Altura completa de la pantalla */
+        }
+
+        
+        .menu{
+            background-color: #1c1c28;
+            width: 16rem;
+            /* Equivale a w-64 en Tailwind (256px) */
+            padding: 1.5rem;
+            /* p-6 en Tailwind (24px) */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Separa logo/navegación y botón de logout */
+            border-radius: 20px;
+            height: 100%;
+        }
+
+        .lista{
+            list-style-type: none;
+            /* Quita los puntos de la lista */
+            padding-top: 200 px;
+        }
+
+        .listado{
+            gap: 200 px;
+        }
+
+        .select_categories{
+            /*margin-top: 5%;*/
+            width: 100%;
+            height: 50px;
+            padding-left: 10px;
+            display: flex;
+            background-color: aqua;
+        }
+
+        .quepasa{
+            width: 100%;
+            background-color: red;
+            overflow: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="menu">
+      <div>
+        <h1>RhythmoTune</h1>
+        <nav>
+          <ul class="lista">
+            <li class="listado"><a href="./bien.html" style="text-decoration: none;">Home</a></li>
+            <br>
+            <li class="listado"><a href="#" style="text-decoration: none;">Categorías</a></li>
+            <br>
+            <li class="listado"><a href="#" style="text-decoration: none;">Artistas</a></li>
+          </ul>
+          <p>Playlists</p>
+          <ul class="lista">
+            <li class="listado">Vibes & Chill</li>
+            <br>
+            <li class="listado">Morning Boost</li>
+            <br>
+            <li class="listado">Rhythm & Energy</li>
+          </ul>
+        </nav>
+      </div>
+      <button>Logout</button>
+    </div>
+
+    <div class="select_categories"><h2>Seleccione Categorías</h2></div>
+    
+    <div class="quepasa">
+        <div class="cosas">hola</div>
+        <div class="cosas">mundo</div>
+        <div class="cosas">adios</div>
+        <div class="cosas">mundo</div>
+    </div>
+</body>
+</html>
