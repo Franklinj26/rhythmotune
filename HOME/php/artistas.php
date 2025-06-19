@@ -166,6 +166,7 @@ $resultado = mysqli_query($conn, $sql);
         </div>
     </div>
 </div>
+</main>
 <footer class="main-footer">
             <hr>
             <div class="footer-grid">
@@ -197,7 +198,6 @@ $resultado = mysqli_query($conn, $sql);
                 <span>© 2025 RhythmoTune - Salesianas</span>
             </div>
         </footer>
-    </main>
 
     <script>
         // Función para búsqueda en tiempo real
