@@ -44,7 +44,7 @@ final class Contacto {
             header('Location: /HOME/html/contacto.html');
         } catch (Exception $e) {
             // Si todo ha salido mal, le mostramos al usuario que algo ha salido mal.
-            header('Location: ../respuestas/CorreoFallido.php');
+            header('Location: /HOME/html/contacto.html');
         }
     }
 }
