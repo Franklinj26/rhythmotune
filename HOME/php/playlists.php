@@ -110,8 +110,8 @@ $playlists = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
 
         <section class="music-section">
             <div class="section-header">
-                <h2 class="section-title">🎵 Tus Playlists</h2>
-                <a href="crear_playlist.php" class="create-playlist-btn">+ Crear nueva playlist</a>
+                <h2 class="section-title">Tus Playlists</h2>
+                <a href="./crear_playlist.php" class="create-playlist-btn">Crear nueva playlist</a>
             </div>
             
             <?php if (!empty($playlists)): ?>

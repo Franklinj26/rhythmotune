@@ -78,10 +78,10 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
             <h1 class="logo">RhythmoTune</h1>
             <nav>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="bien.php">Home</a></li>
+                    <li class="nav-item"><a href="./bien.php">Home</a></li>
                     <li class="nav-item"><a href="./artistas.php">Artistas</a></li>
-                    <li class="nav-item"><a href="playlists.php">Mis Playlists</a></li>
-                    <li class="nav-item"><a href="reproducciones.php">Canciones Escuchadas</a></li>
+                    <li class="nav-item"><a href="./playlists.php">Mis Playlists</a></li>
+                    <li class="nav-item"><a href="./reproducciones.php">Canciones Escuchadas</a></li>
                 </ul>
             </nav>
         </div>
