@@ -124,17 +124,6 @@ $resultado = mysqli_query($conn, $sql);
             
             <a href="bien.php" class="back-link">⬅️ Volver al inicio</a>
         </section>
-
-
-        <div class="music-player" id="musicPlayer">
-    <div class="player-content">
-        <div class="song-info">
-            <img id="currentSongCover" src="../iconos/music-placeholder.png" alt="Portada">
-            <div>
-                <h3 id="currentSongTitle">No hay canción seleccionada</h3>
-                <p id="currentSongArtist">Artista desconocido</p>
-            </div>
-        </div>
     </main>
 
     <script>
