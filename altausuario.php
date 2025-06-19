@@ -98,6 +98,9 @@ if (isset($_POST['login'])) {
         if (password_verify($pass, $usuario['contraseña'])) {
             $_SESSION['usuario_id'] = $usuario['id_usu'];
             $_SESSION['usuario_nombre'] = $usuario['nom_usu'];
+            //Envio de correo electrónico
+            $GestorCorreo = new Contacto();
+            $GestorCorreo->EnviarCorreo($mail, 'Se ha iniciado sesión correctamente.', 'Correo de sesión: ' . $mail);
             header("Location: HOME/php/bien.php");
             exit();
         } else {
