@@ -78,10 +78,10 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
             <h1 class="logo">RhythmoTune</h1>
             <nav>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="./bien.php">Home</a></li>
+                    <li class="nav-item"><a href="bien.php">Home</a></li>
                     <li class="nav-item"><a href="./artistas.php">Artistas</a></li>
-                    <li class="nav-item"><a href="./playlists.php">Mis Playlists</a></li>
-                    <li class="nav-item"><a href="./historial.php">Canciones Escuchadas</a></li>
+                    <li class="nav-item"><a href="playlists.php">Mis Playlists</a></li>
+                    <li class="nav-item"><a href="reproducciones.php">Canciones Escuchadas</a></li>
                 </ul>
             </nav>
         </div>
@@ -111,15 +111,16 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 <div class="artist-info" onclick="window.location.href='ver_artista.php?id=<?php echo $album['id_artista']; ?>'">
                     <?php if (!empty($album['foto_artista'])): ?>
                         <img src="../portada/artistas/<?php echo htmlspecialchars($album['foto_artista']); ?>" 
-                             alt="<?php echo htmlspecialchars($album['nom_artista']); ?>">
+                            alt="<?php echo htmlspecialchars($album['nom_artista']); ?>">
                     <?php else: ?>
                         <img src="../iconos/artist-placeholder.png" 
-                             alt="<?php echo htmlspecialchars($album['nom_artista']); ?>">
+                            alt="<?php echo htmlspecialchars($album['nom_artista']); ?>">
                     <?php endif; ?>
                     <span><?php echo htmlspecialchars($album['nom_artista']); ?></span>
                 </div>
                 <p class="album-year"><?php echo htmlspecialchars($album['año']); ?></p>
                 <p class="songs-count"><?php echo count($canciones); ?> canciones</p>
+                <button class="btn-play" onclick="playAlbum()">Reproducir álbum</button>
             </div>
         </section>
 
@@ -128,14 +129,7 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
             <div class="songs-list">
                 <?php foreach ($canciones as $index => $cancion): ?>
                 <div class="song-item" 
-                     onclick="playSongFromCard({
-                         title: '<?php echo htmlspecialchars($cancion['title']); ?>',
-                         artist: '<?php echo htmlspecialchars($cancion['artist']); ?>',
-                         cover: '../portada/albums/<?php echo htmlspecialchars($cancion['cover']); ?>',
-                         audio: '../musica/<?php echo htmlspecialchars($cancion['album_folder'] ?? $cancion['nom_album']); ?>/<?php echo htmlspecialchars($cancion['audio']); ?>',
-                         duration: '<?php echo htmlspecialchars($cancion['duracion']); ?>',
-                         id: <?php echo $cancion['id_cancion']; ?>
-                     })">
+                    onclick="playSongFromAlbum(<?php echo $index; ?>)">
                     <span class="track-number"><?php echo $index + 1; ?></span>
                     <div class="song-details">
                         <span class="song-title"><?php echo htmlspecialchars($cancion['title']); ?></span>
@@ -146,12 +140,11 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 <?php endforeach; ?>
             </div>
             <a href="bien.php" class="back-link">⬅️ Volver al inicio</a>
-
         </section>
 
         <div class="music-player" id="musicPlayer">
-            <!-- Mantén el mismo reproductor que en tu página principal -->
-            <div class="player-content">
+          <!-- REPRODUCTOR MUSICAL -->
+          <div class="player-content">
                 <div class="song-info">
                     <img id="currentSongCover" src="../iconos/music-placeholder.png" alt="Portada">
                     <div>
@@ -180,7 +173,6 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 </div>
             </div>
         </div>
-
         <footer class="main-footer">
             <hr>
             <div class="footer-grid">
@@ -201,10 +193,10 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/1.png" alt="Instagram"></a>
-                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/3.png" alt="Twitter/X"></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/2.png" alt="Facebook"></a>
-                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/4.png" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png" alt="Instagram"></a>
+                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png" alt="Twitter/X"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg" alt="LinkedIn"></a>
                 </div>
             </div>
             
@@ -214,6 +206,49 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
         </footer>
     </main>
     <script src="../js/script.js"></script>
+    <script>
+// Variable global para almacenar las canciones del álbum
+const albumSongs = [
+    <?php foreach ($canciones as $cancion): ?>
+    {
+        title: '<?php echo addslashes($cancion['title']); ?>',
+        artist: '<?php echo addslashes($cancion['artist']); ?>',
+        cover: '../portada/albums/<?php echo addslashes($cancion['cover']); ?>',
+        audio: '../musica/<?php echo addslashes($cancion['album_folder']); ?>/<?php echo addslashes($cancion['audio']); ?>',
+        duration: '<?php echo addslashes($cancion['duracion']); ?>',
+        id: <?php echo $cancion['id_cancion']; ?>
+    },
+    <?php endforeach; ?>
+];
+
+// Función para reproducir canción específica del álbum
+function playSongFromAlbum(index) {
+    // Cargar todas las canciones del álbum
+    songs = [...albumSongs];
+    currentSongIndex = index;
+    isPlaylistMode = true; // Activar modo playlist para permitir navegar entre canciones
+    
+    // Cargar y reproducir la canción seleccionada
+    loadSong(songs[currentSongIndex]);
+    
+    // Si no está reproduciendo, iniciar reproducción
+    if (!isPlaying) {
+        togglePlay();
+    }
+}
+
+// Función para reproducir todo el álbum
+function playAlbum() {
+    if (albumSongs.length > 0) {
+        songs = [...albumSongs];
+        currentSongIndex = 0;
+        isPlaylistMode = true;
+        loadAndPlaySong();
+    } else {
+        alert('No hay canciones en este álbum');
+    }
+}
+</script>
     
     <style>
         /* Estilos adicionales para la página de álbum */
@@ -303,6 +338,22 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
+        .btn-play {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-play:hover {
+            background-color: #1ed760;
+        }
     </style>
 </body>
 </html>
+

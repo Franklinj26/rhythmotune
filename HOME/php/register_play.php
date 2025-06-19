@@ -31,3 +31,4 @@ if ($stmt->execute()) {
     echo 'Error al registrar la reproducción: ' . $conn->error;
 }
 ?>
+

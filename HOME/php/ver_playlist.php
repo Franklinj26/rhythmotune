@@ -69,10 +69,10 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
             <h1 class="logo">RhythmoTune</h1>
             <nav>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="./bien.php">Home</a></li>
+                    <li class="nav-item"><a href="bien.php">Home</a></li>
                     <li class="nav-item"><a href="./artistas.php">Artistas</a></li>
-                    <li class="nav-item active"><a href="./playlists.php">Mis Playlists</a></li>
-                    <li class="nav-item"><a href="./historial.php">Canciones Escuchadas</a></li>
+                    <li class="nav-item active"><a href="playlists.php">Mis Playlists</a></li>
+                    <li class="nav-item"><a href="reproducciones.php">Canciones Escuchadas</a></li>
                 </ul>
             </nav>
         </div>
@@ -109,15 +109,7 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
             <div class="songs-list">
                 <?php if (!empty($canciones)): ?>
                     <?php foreach ($canciones as $index => $cancion): ?>
-                        <div class="song-item" 
-                        onclick="playSongFromCard({
-                            title: '<?php echo htmlspecialchars($cancion['title'] ?? ''); ?>',
-                            artist: '<?php echo htmlspecialchars($cancion['artist'] ?? ''); ?>',
-                            cover: '../portada/albums/<?php echo htmlspecialchars($cancion['cover'] ?? 'default_cover.jpg'); ?>',
-                            audio: '../musica/<?php echo htmlspecialchars($cancion['album_folder'] ?? ''); ?>/<?php echo htmlspecialchars($cancion['audio'] ?? ''); ?>',
-                            duration: '<?php echo htmlspecialchars($cancion['duracion'] ?? '00:00'); ?>',
-                            id: <?php echo $cancion['id_cancion'] ?? 0; ?>
-                        })">
+                        <div class="song-item" onclick="playPlaylistSong(<?php echo $index; ?>)">
                             <span class="song-number"><?php echo $index + 1; ?></span>
                             <?php if (!empty($cancion['cover'])): ?>
                                 <img src="../portada/albums/<?php echo htmlspecialchars($cancion['cover']); ?>" 
@@ -172,7 +164,7 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 </div>
             </div>
         </div>
-    <footer class="main-footer">
+        <footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -192,10 +184,10 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/1.png" alt="Instagram"></a>
-                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/3.png" alt="Twitter/X"></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/2.png" alt="Facebook"></a>
-                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/4.png" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png" alt="Instagram"></a>
+                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png" alt="Twitter/X"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg" alt="LinkedIn"></a>
                 </div>
             </div>
             
@@ -205,31 +197,50 @@ $canciones = mysqli_fetch_all(mysqli_stmt_get_result($stmt_canciones), MYSQLI_AS
         </footer>
     </main>
 
-        
-
     <script src="../js/script.js"></script>
     <script>
-        function playPlaylist() {
-            const songs = [
-                <?php foreach ($canciones as $cancion): ?>
-                {
-                    title: '<?php echo addslashes($cancion['title']); ?>',
-                    artist: '<?php echo addslashes($cancion['artist']); ?>',
-                    cover: '../portada/albums/<?php echo addslashes($cancion['cover']); ?>',
-                    audio: '../musica/<?php echo addslashes($cancion['album_folder']); ?>/<?php echo addslashes($cancion['audio']); ?>',
-                    duration: '<?php echo addslashes($cancion['duracion']); ?>',
-                    id: <?php echo $cancion['id_cancion']; ?>
-                },
-                <?php endforeach; ?>
-            ];
-            
-            if (songs.length > 0) {
-                // Asume que tienes una función playAllSongs definida en script.js
-                playAllSongs(songs);
-            } else {
-                alert('No hay canciones para reproducir en esta playlist');
-            }
+    // Variable global para las canciones de la playlist
+    const playlistSongs = [
+        <?php foreach ($canciones as $cancion): ?>
+        {
+            title: '<?php echo addslashes($cancion['title']); ?>',
+            artist: '<?php echo addslashes($cancion['artist']); ?>',
+            cover: '../portada/albums/<?php echo addslashes($cancion['cover']); ?>',
+            audio: '../musica/<?php echo addslashes($cancion['album_folder']); ?>/<?php echo addslashes($cancion['audio']); ?>',
+            duration: '<?php echo addslashes($cancion['duracion']); ?>',
+            id: <?php echo $cancion['id_cancion']; ?>
+        },
+        <?php endforeach; ?>
+    ];
+    
+    // Función para reproducir canción específica de la playlist
+    function playPlaylistSong(index) {
+        // Cargar todas las canciones de la playlist
+        songs = [...playlistSongs];
+        currentSongIndex = index;
+        isPlaylistMode = true; // Activar modo playlist para permitir navegar entre canciones
+        
+        // Cargar y reproducir la canción seleccionada
+        loadSong(songs[currentSongIndex]);
+        
+        // Si no está reproduciendo, iniciar reproducción
+        if (!isPlaying) {
+            togglePlay();
         }
+    }
+
+    // Función para reproducir toda la playlist
+    function playPlaylist() {
+        if (playlistSongs.length > 0) {
+            songs = [...playlistSongs];
+            currentSongIndex = 0;
+            isPlaylistMode = true;
+            loadAndPlaySong();
+        } else {
+            alert('No hay canciones para reproducir en esta playlist');
+        }
+    }
     </script>
 </body>
 </html>
+

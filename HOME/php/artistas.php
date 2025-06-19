@@ -77,10 +77,10 @@ $resultado = mysqli_query($conn, $sql);
             <h1 class="logo">RhythmoTune</h1>
             <nav>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="./bien.php">Home</a></li>
+                    <li class="nav-item"><a href="bien.php">Home</a></li>
                     <li class="nav-item"><a href="./artistas.php">Artistas</a></li>
-                    <li class="nav-item"><a href="./playlists.php">Mis Playlists</a></li>
-                    <li class="nav-item"><a href="./historial.php">Canciones Escuchadas</a></li>
+                    <li class="nav-item"><a href="playlists.php">Mis Playlists</a></li>
+                    <li class="nav-item"><a href="reproducciones.php">Canciones Escuchadas</a></li>
                 </ul>
             </nav>
         </div>
@@ -125,7 +125,48 @@ $resultado = mysqli_query($conn, $sql);
             <a href="bien.php" class="back-link">⬅️ Volver al inicio</a>
         </section>
 
-        <footer class="main-footer">
+
+        <div class="music-player" id="musicPlayer">
+    <div class="player-content">
+        <div class="song-info">
+            <img id="currentSongCover" src="../iconos/music-placeholder.png" alt="Portada">
+            <div>
+                <h3 id="currentSongTitle">No hay canción seleccionada</h3>
+                <p id="currentSongArtist">Artista desconocido</p>
+            </div>
+        </div>
+<!-- REPRODUCTOR MUSICAL -->
+<div class="music-player" id="musicPlayer">
+    <div class="player-content">
+        <div class="song-info">
+            <img id="currentSongCover" src="../iconos/music-placeholder.png" alt="Portada">
+            <div>
+                <h3 id="currentSongTitle">No hay canción seleccionada</h3>
+                <p id="currentSongArtist">Artista desconocido</p>
+            </div>
+        </div>
+        
+        <div class="player-controls">
+            <audio id="audioPlayer"></audio>
+            <div class="controls-buttons">
+                <button class="control-btn" onclick="previousSong()">⏮</button>
+                <button class="control-btn" onclick="togglePlay()" id="playBtn">▶</button>
+                <button class="control-btn" onclick="nextSong()">⏭</button>
+            </div>
+            <div class="progress-container">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="songProgress" value="0" class="progress-bar">
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+        
+        <div class="volume-control">
+            <span class="volume-icon">🔊</span>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7">
+        </div>
+    </div>
+</div>
+<footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -145,10 +186,10 @@ $resultado = mysqli_query($conn, $sql);
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/1.png" alt="Instagram"></a>
-                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/3.png" alt="Twitter/X"></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/2.png" alt="Facebook"></a>
-                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/4.png" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png" alt="Instagram"></a>
+                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png" alt="Twitter/X"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg" alt="LinkedIn"></a>
                 </div>
             </div>
             
@@ -178,6 +219,26 @@ $resultado = mysqli_query($conn, $sql);
         
         // Activar búsqueda al escribir
         document.getElementById('artistSearch').addEventListener('keyup', searchArtists);
+
+            // Inicialización común para todas las páginas
+    document.addEventListener('DOMContentLoaded', function() {
+        // Cargar estado del reproductor si existe
+        if (typeof loadState === 'function') {
+            loadState();
+        }
+        
+        // Configurar el control de volumen
+        const volumeSlider = document.getElementById('volumeSlider');
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', function() {
+                const audioPlayer = document.getElementById('audioPlayer');
+                if (audioPlayer) {
+                    audioPlayer.volume = this.value;
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
+

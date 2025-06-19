@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li class="nav-item"><a href="bien.php">Home</a></li>
                     <li class="nav-item"><a href="./artistas.php">Artistas</a></li>
                     <li class="nav-item active"><a href="playlists.php">Mis Playlists</a></li>
-                    <li class="nav-item"><a href="./historial.php">Canciones Escuchadas</a></li>                
+                    <li class="nav-item"><a href="reproducciones.php">Canciones Escuchadas</a></li>
                 </ul>
             </nav>
         </div>
@@ -86,17 +86,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main id="main-content">
         <h2>Añadir canciones a la playlist</h2>
         
-        <form method="POST">
+        <form method="POST" id="addSongsForm">
             <div class="song-list-add">
                 <?php if (!empty($canciones)): ?>
+                    <div class="select-all-container">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="selectAll">
+                            <span class="checkmark"></span>
+                            <span>Seleccionar todas</span>
+                        </label>
+                        <span id="selectedCounter" style="margin-left: 20px;">0 seleccionadas</span>
+                    </div>
+                    
                     <?php foreach ($canciones as $cancion): ?>
-                        <button type="submit" name="canciones[]" value="<?php echo $cancion['id_cancion']; ?>" class="song-add-item">
+                        <div class="song-add-item">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="canciones[]" value="<?php echo $cancion['id_cancion']; ?>" class="song-checkbox">
+                                <span class="checkmark"></span>
+                            </label>
                             <img src="../portada/albums/<?php echo htmlspecialchars($cancion['portada_album'] ?: 'album-placeholder.png'); ?>" alt="Portada">
                             <div class="song-info-add">
                                 <?php echo htmlspecialchars($cancion['nom_cancion']); ?>
                                 <span><?php echo htmlspecialchars($cancion['nom_artista']); ?> • <?php echo htmlspecialchars($cancion['nom_album']); ?></span>
                             </div>
-                        </button>
+                        </div>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p class="no-songs-message">No hay canciones disponibles para añadir</p>
@@ -104,11 +117,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="form-actions">
+                <button type="submit" class="btn-primary">Añadir canciones seleccionadas</button>
                 <a href="ver_playlist.php?id=<?php echo $playlist_id; ?>" class="btn-secondary">Volver</a>
             </div>
         </form>
-    
-    <footer class="main-footer">
+        <!-- Botón flotante para ir al final -->
+<button class="floating-action-button" id="scrollToAddBtn" title="Ir a añadir canciones">↓</button>
+<footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -128,10 +143,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/1.png" alt="Instagram"></a>
-                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/3.png" alt="Twitter/X"></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/2.png" alt="Facebook"></a>
-                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/4.png" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/rhythmotune/" target="_blank"><img src="../iconos/1.png" alt="Instagram"></a>
+                    <a href="https://x.com/rhythmotun28714" target="_blank"><img src="../iconos/3.png" alt="Twitter/X"></a>
+                    <a href="https://www.facebook.com/profile.php?id=61577711155281" target="_blank"><img src="../iconos/2.png" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/in/rhythmo-tune-7905a2370/" target="_blank"><img src="../iconos/4.png" alt="LinkedIn"></a>
                 </div>
             </div>
             
@@ -140,5 +155,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </footer>
     </main>
+    <script src="../js/script.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectAll = document.getElementById('selectAll');
+        const songCheckboxes = document.querySelectorAll('.song-checkbox');
+        const selectedCounter = document.getElementById('selectedCounter');
+        
+        // Función para actualizar el contador
+        function updateCounter() {
+            const selectedCount = document.querySelectorAll('.song-checkbox:checked').length;
+            selectedCounter.textContent = `${selectedCount} seleccionada${selectedCount !== 1 ? 's' : ''}`;
+        }
+        
+        // Controlar el checkbox "Seleccionar todas"
+        if (selectAll) {
+            selectAll.addEventListener('change', function() {
+                songCheckboxes.forEach(checkbox => {
+                    checkbox.checked = selectAll.checked;
+                });
+                updateCounter();
+            });
+        }
+        
+        // Controlar cuando se cambia cualquier checkbox de canción
+        songCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // Verificar si todas están seleccionadas
+                const allChecked = Array.from(songCheckboxes).every(cb => cb.checked);
+                selectAll.checked = allChecked;
+                updateCounter();
+            });
+        });
+        
+        // Actualizar contador al cargar la página
+        updateCounter();
+    });
+
+// Botón flotante para ir al final
+document.addEventListener('DOMContentLoaded', function() {
+    // Crear el botón si no existe
+    if (!document.getElementById('scrollToAddBtn')) {
+        const button = document.createElement('button');
+        button.id = 'scrollToAddBtn';
+        button.className = 'floating-action-button';
+        button.title = 'Ir a añadir canciones';
+        button.innerHTML = '↓';
+        document.body.appendChild(button);
+    }
+    
+    const scrollToAddBtn = document.getElementById('scrollToAddBtn');
+    const formActions = document.querySelector('.form-actions');
+    
+    if (scrollToAddBtn && formActions) {
+        // Mostrar/ocultar botón al hacer scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 200) {
+                scrollToAddBtn.classList.add('visible');
+            } else {
+                scrollToAddBtn.classList.remove('visible');
+            }
+        });
+        
+        // Scroll al hacer clic
+        scrollToAddBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            formActions.scrollIntoView({
+                behavior: 'smooth',
+                block: 'end'
+            });
+        });
+    }
+});
+    </script>
+    
 </body>
 </html>
+
