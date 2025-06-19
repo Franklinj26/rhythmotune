@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 require_once __DIR__ . '/../../conexion.php';
 
@@ -11,7 +12,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $userId = $_SESSION['usuario_id'];
 
-// Obtener el historial de reproducción del usuario con la misma estructura que tu consulta funcional
+// Consulta modificada para agrupar por canción y contar reproducciones
 $sql_historial = "SELECT 
             c.id_cancion, 
             c.nom_cancion, 
@@ -58,15 +59,16 @@ $historial = mysqli_fetch_all($result_historial, MYSQLI_ASSOC);
         }
         
         .history-item {
-            background: #0a1a2f; /* Azul oscuro elegante */
+            background: #0a1a2f;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
-            color: white; /* Texto blanco */
+            color: white;
             display: flex;
             flex-direction: column;
             height: 100%;
+            cursor: pointer;
         }
         
         .history-item:hover {
@@ -119,12 +121,24 @@ $historial = mysqli_fetch_all($result_historial, MYSQLI_ASSOC);
             font-style: italic;
         }
         
-        .history-date {
-            font-size: 12px;
-            color: #b8c7e0;
+        .history-stats {
             margin-top: auto;
             padding-top: 10px;
             border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .play-count {
+            font-size: 13px;
+            color: #1db954;
+            font-weight: 600;
+        }
+        
+        .history-date {
+            font-size: 12px;
+            color: #b8c7e0;
         }
         
         .page-title {
@@ -148,10 +162,10 @@ $historial = mysqli_fetch_all($result_historial, MYSQLI_ASSOC);
             <h1 class="logo">RhythmoTune</h1>
             <nav>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="./bien.php">Home</a></li>
+                    <li class="nav-item"><a href="bien.php">Home</a></li>
                     <li class="nav-item"><a href="./artistas.php">Artistas</a></li>
-                    <li class="nav-item"><a href="./playlists.php">Mis Playlists</a></li>
-                    <li class="nav-item"><a href="./historial.php">Canciones Escuchadas</a></li>
+                    <li class="nav-item"><a href="playlists.php">Mis Playlists</a></li>
+                    <li class="nav-item"><a href="reproducciones.php">Canciones Escuchadas</a></li>
                 </ul>
             </nav>
         </div>
@@ -193,38 +207,40 @@ $historial = mysqli_fetch_all($result_historial, MYSQLI_ASSOC);
                 <p class="no-songs">No has reproducido ninguna canción todavía.</p>
             <?php endif; ?>
         </div>
-<!-- REPRODUCTOR MUSICAL -->
-<div class="music-player" id="musicPlayer">
-    <div class="player-content">
-        <div class="song-info">
-            <img id="currentSongCover" src="../iconos/music-placeholder.png" alt="Portada">
-            <div>
-                <h3 id="currentSongTitle">No hay canción seleccionada</h3>
-                <p id="currentSongArtist">Artista desconocido</p>
+
+        <!-- REPRODUCTOR MUSICAL -->
+        <div class="music-player" id="musicPlayer">
+            <div class="player-content">
+                <div class="song-info">
+                    <img id="currentSongCover" src="../iconos/music-placeholder.png" alt="Portada">
+                    <div>
+                        <h3 id="currentSongTitle">No hay canción seleccionada</h3>
+                        <p id="currentSongArtist">Artista desconocido</p>
+                    </div>
+                </div>
+                
+                <div class="player-controls">
+                    <audio id="audioPlayer"></audio>
+                    <div class="controls-buttons">
+                        <button class="control-btn" onclick="previousSong()">⏮</button>
+                        <button class="control-btn" onclick="togglePlay()" id="playBtn">▶</button>
+                        <button class="control-btn" onclick="nextSong()">⏭</button>
+                    </div>
+                    <div class="progress-container">
+                        <span id="currentTime">0:00</span>
+                        <input type="range" id="songProgress" value="0" class="progress-bar">
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+                
+                <div class="volume-control">
+                    <span class="volume-icon">🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7">
+                </div>
             </div>
         </div>
-        
-        <div class="player-controls">
-            <audio id="audioPlayer"></audio>
-            <div class="controls-buttons">
-                <button class="control-btn" onclick="previousSong()">⏮</button>
-                <button class="control-btn" onclick="togglePlay()" id="playBtn">▶</button>
-                <button class="control-btn" onclick="nextSong()">⏭</button>
-            </div>
-            <div class="progress-container">
-                <span id="currentTime">0:00</span>
-                <input type="range" id="songProgress" value="0" class="progress-bar">
-                <span id="duration">0:00</span>
-            </div>
-        </div>
-        
-        <div class="volume-control">
-            <span class="volume-icon">🔊</span>
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7">
-        </div>
-    </div>
-</div>
-<footer class="main-footer">
+
+        <footer class="main-footer">
             <hr>
             <div class="footer-grid">
                 <div class="footer-logo">
@@ -239,15 +255,14 @@ $historial = mysqli_fetch_all($result_historial, MYSQLI_ASSOC);
                         <li><a href="../html/politica_de_privacidad.html">Política de privacidad</a></li>
                         <li><a href="../html/aviso_legal.html">Aviso legal</a></li>
                         <li><a href="../html/contacto.html">Contacto</a></li>
-                        <!--<li><a href="#">Cookies</a></li>-->
                     </ul>
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/rhythmotune/" target="_blank"><img src="../iconos/1.png" alt="Instagram"></a>
-                    <a href="https://x.com/rhythmotun28714" target="_blank"><img src="../iconos/3.png" alt="Twitter/X"></a>
-                    <a href="https://www.facebook.com/profile.php?id=61577711155281" target="_blank"><img src="../iconos/2.png" alt="Facebook"></a>
-                    <a href="https://www.linkedin.com/in/rhythmo-tune-7905a2370/" target="_blank"><img src="../iconos/4.png" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="../iconos/ig.png" alt="Instagram"></a>
+                    <a href="https://www.x.com/" target="_blank"><img src="../iconos/x.png" alt="Twitter/X"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img src="../iconos/Facebook.png" alt="Facebook"></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="../iconos/linkedin.jpg" alt="LinkedIn"></a>
                 </div>
             </div>
             
@@ -256,11 +271,8 @@ $historial = mysqli_fetch_all($result_historial, MYSQLI_ASSOC);
             </div>
         </footer>
     </main>
-    
 
-<script>
-
-<script>
+    <script>
     const allSongs = <?php echo json_encode(array_map(function($cancion) {
         return [
             'id' => $cancion['id_cancion'],
@@ -277,36 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof loadState === 'function') {
                 loadState();
             }
-
-            const volumeSlider = document.getElementById('volumeSlider');
-            if (volumeSlider) {
-                volumeSlider.addEventListener('input', function() {
-                    const audioPlayer = document.getElementById('audioPlayer');
-                    if (audioPlayer) {
-                        audioPlayer.volume = this.value;
-                    }
-                });
-            }
-        });
-    </script>
-
-    const allSongs = <?php echo json_encode(array_map(function($cancion) {
-        return [
-            'id' => $cancion['id_cancion'],
-            'title' => $cancion['nom_cancion'],
-            'artist' => $cancion['nom_artista'],
-            'album' => $cancion['nom_album'],
-            'cover' => '../portada/albums/'.($cancion['portada_album'] ?: 'album-placeholder.png'),
-            'audio' => '../musica/'.$cancion['nombre_directorio'].'/'.$cancion['ruta_audio'],
-            'duration' => '0:00' // Puedes calcular esto si tienes la duración en la BD
-        ];
-    }, $todas_las_canciones)); ?>;
-
-document.addEventListener('DOMContentLoaded', function() {
-            if (typeof loadState === 'function') {
-                loadState();
-            }
-
+            
             const volumeSlider = document.getElementById('volumeSlider');
             if (volumeSlider) {
                 volumeSlider.addEventListener('input', function() {
@@ -319,6 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     </script>
         <script src="../js/script.js"></script>
+
 </body>
 </html>
-
