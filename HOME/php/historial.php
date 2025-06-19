@@ -13,27 +13,34 @@ if (!isset($_SESSION['usuario_id'])) {
 $userId = $_SESSION['usuario_id'];
 
 // Obtener el historial de reproducción del usuario con la misma estructura que tu consulta funcional
-$sql = "SELECT 
+$sql_historial = "SELECT 
             c.id_cancion, 
             c.nom_cancion, 
             a.nom_album, 
             a.portada_album, 
             a.nombre_directorio, 
             ar.nom_artista,
-            r.fecha
-        FROM reproducciones r
-        JOIN canciones c ON r.id_cancion = c.id_cancion
+            c.ruta_audio,
+            COUNT(r.id_reproduccion) as reproducciones,
+            MAX(r.fecha) as ultima_reproduccion
+        FROM canciones c
         JOIN albums a ON c.id_album = a.id_album
         JOIN artistas ar ON a.id_artista = ar.id_artista
-        WHERE r.id_usu = ?
-        ORDER BY r.fecha DESC
+        JOIN reproducciones r ON c.id_cancion = r.id_cancion
+        WHERE r.id_usu = $userId
+        GROUP BY c.id_cancion
+        ORDER BY reproducciones DESC, ultima_reproduccion DESC
         LIMIT 20";
+$sql_todas_canciones = "SELECT c.id_cancion, c.nom_cancion, a.nom_album, a.portada_album, 
+        a.nombre_directorio, ar.nom_artista, c.ruta_audio
+        FROM canciones c
+        JOIN albums a ON c.id_album = a.id_album
+        JOIN artistas ar ON a.id_artista = ar.id_artista";
+$result_todas = mysqli_query($conn, $sql_todas_canciones);
+$todas_las_canciones = mysqli_fetch_all($result_todas, MYSQLI_ASSOC);
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId);
-$stmt->execute();
-$result = $stmt->get_result();
-$historial = $result->fetch_all(MYSQLI_ASSOC);
+$result_historial = mysqli_query($conn, $sql_historial);
+$historial = mysqli_fetch_all($result_historial, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -159,7 +166,13 @@ $historial = $result->fetch_all(MYSQLI_ASSOC);
         <div class="history-container">
             <?php if (!empty($historial)): ?>
                 <?php foreach ($historial as $cancion): ?>
-                    <div class="history-item">
+                    <div class="history-item" onclick="playSongFromCard({
+                        title: '<?php echo htmlspecialchars($cancion['nom_cancion']); ?>',
+                        artist: '<?php echo htmlspecialchars($cancion['nom_artista']); ?>',
+                        cover: '../portada/albums/<?php echo htmlspecialchars($cancion['portada_album'] ?: 'album-placeholder.png'); ?>',
+                        audio: '../musica/<?php echo htmlspecialchars($cancion['nombre_directorio']); ?>/<?php echo htmlspecialchars($cancion['ruta_audio']); ?>',
+                        id: <?php echo $cancion['id_cancion']; ?>
+                    })">
                         <div class="history-image-container">
                             <img src="../portada/albums/<?php echo htmlspecialchars($cancion['portada_album'] ?: 'album-placeholder.png'); ?>" 
                                  alt="Portada de <?php echo htmlspecialchars($cancion['nom_album']); ?>">
@@ -168,9 +181,12 @@ $historial = $result->fetch_all(MYSQLI_ASSOC);
                             <h3 class="song-title"><?php echo htmlspecialchars($cancion['nom_cancion']); ?></h3>
                             <p class="artist-name"><?php echo htmlspecialchars($cancion['nom_artista']); ?></p>
                             <p class="album-name"><?php echo htmlspecialchars($cancion['nom_album']); ?></p>
-                            <p class="history-date">
-                                Escuchado el <?php echo date('d/m/Y H:i', strtotime($cancion['fecha'])); ?>
-                            </p>
+                            <div class="history-stats">
+                                <span class="play-count"><?php echo $cancion['reproducciones']; ?> reproducciones</span>
+                                <span class="history-date">
+                                    Última vez: <?php echo date('d/m/Y H:i', strtotime($cancion['ultima_reproduccion'])); ?>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -244,6 +260,37 @@ $historial = $result->fetch_all(MYSQLI_ASSOC);
     
 
 <script>
+
+<script>
+    const allSongs = <?php echo json_encode(array_map(function($cancion) {
+        return [
+            'id' => $cancion['id_cancion'],
+            'title' => $cancion['nom_cancion'],
+            'artist' => $cancion['nom_artista'],
+            'album' => $cancion['nom_album'],
+            'cover' => '../portada/albums/'.($cancion['portada_album'] ?: 'album-placeholder.png'),
+            'audio' => '../musica/'.$cancion['nombre_directorio'].'/'.$cancion['ruta_audio'],
+            'duration' => '0:00' // Puedes calcular esto si tienes la duración en la BD
+        ];
+    }, $todas_las_canciones)); ?>;
+
+document.addEventListener('DOMContentLoaded', function() {
+            if (typeof loadState === 'function') {
+                loadState();
+            }
+
+            const volumeSlider = document.getElementById('volumeSlider');
+            if (volumeSlider) {
+                volumeSlider.addEventListener('input', function() {
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    if (audioPlayer) {
+                        audioPlayer.volume = this.value;
+                    }
+                });
+            }
+        });
+    </script>
+
     const allSongs = <?php echo json_encode(array_map(function($cancion) {
         return [
             'id' => $cancion['id_cancion'],
