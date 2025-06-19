@@ -89,7 +89,7 @@ $resultado = mysqli_query($conn, $sql);
         </form>
     </div>
 
-    <main id="main-content">
+    <main class="main-content">
         <header class="main-header">
             <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</h2>
             <div class="search-container">
@@ -166,7 +166,6 @@ $resultado = mysqli_query($conn, $sql);
         </div>
     </div>
 </div>
-</main>
 <footer class="main-footer">
             <hr>
             <div class="footer-grid">
@@ -198,6 +197,7 @@ $resultado = mysqli_query($conn, $sql);
                 <span>© 2025 RhythmoTune - Salesianas</span>
             </div>
         </footer>
+    </main>
 
     <script>
         // Función para búsqueda en tiempo real
