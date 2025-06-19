@@ -25,7 +25,9 @@ if (isset($_POST['envio'])) {
     $mensaje = $_POST["mensaje"];
 
     $GestorCorreo = new Correo();
-    $GestorCorreo->EnviarCorreo($email, 'Contacto recibido.',
+
+    //Enviar correo al usuario
+    $GestorCorreo->EnviarCorreo($email, 'Contacto recibido.', 
         '<h1>Datos recibidos: </h1>'
         . '<br>Tu nombre: ' . $nombre
         . '<br>Tu correo: ' . $email
@@ -34,6 +36,7 @@ if (isset($_POST['envio'])) {
         . '<br><br>¡Gracias por contactar con nosotros! 🤓👆'
     );
 
+    //Enviar correo al administrador
     $GestorCorreo->EnviarCorreo('rhythmotune@gmail.com', $asunto, 
         $mensaje
         . '<br><br>Nombre del remitente: ' . $nombre
