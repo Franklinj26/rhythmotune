@@ -89,7 +89,7 @@ $resultado = mysqli_query($conn, $sql);
         </form>
     </div>
 
-    <main class="main-content">
+    <main id="main-content">
         <header class="main-header">
             <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?> 👋</h2>
             <div class="search-container">
