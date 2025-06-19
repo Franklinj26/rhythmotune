@@ -173,37 +173,7 @@ $albumes = mysqli_fetch_all(mysqli_query($conn, $sql_albumes), MYSQLI_ASSOC);
         <?php endif; ?>
       </div>
           <!-- REPRODUCTOR MUSICAL -->
-<!-- REPRODUCTOR MUSICAL -->
-<div class="music-player" id="musicPlayer">
-    <div class="player-content">
-        <div class="song-info">
-            <img id="currentSongCover" src="../iconos/music-placeholder.png" alt="Portada">
-            <div>
-                <h3 id="currentSongTitle">No hay canción seleccionada</h3>
-                <p id="currentSongArtist">Artista desconocido</p>
-            </div>
-        </div>
-        
-        <div class="player-controls">
-            <audio id="audioPlayer"></audio>
-            <div class="controls-buttons">
-                <button class="control-btn" onclick="previousSong()">⏮</button>
-                <button class="control-btn" onclick="togglePlay()" id="playBtn">▶</button>
-                <button class="control-btn" onclick="nextSong()">⏭</button>
-            </div>
-            <div class="progress-container">
-                <span id="currentTime">0:00</span>
-                <input type="range" id="songProgress" value="0" class="progress-bar">
-                <span id="duration">0:00</span>
-            </div>
-        </div>
-        
-        <div class="volume-control">
-            <span class="volume-icon">🔊</span>
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7">
-        </div>
-    </div>
-</div>
+
     </section>
 
     <a href="artistas.php" class="back-link">⬅️ Volver a artistas</a>
